@@ -20,9 +20,9 @@ class AddUsernameColumnToUsersTable extends Migration
             $table->string('username')->after('email_verified_at')->unique();
             $table->string('phone')->comment('เบอร์โทรศัพท์มือถือ')->after('remember_token');
             $table->string('address')->comment('ทีอยู่')->after('phone');
-            $table->foreignId('province_id')->references('id')->on('provinces')->onDelete('cascade')->after('address');
-            $table->foreignId('district_id')->references('id')->on('districts')->onDelete('cascade')->after('province_id');
-            $table->foreignId('sub_district_id')->references('id')->on('sub_districts')->onDelete('cascade')->after('district_id');
+            $table->foreignId('province_id')->after('address')->references('id')->on('provinces')->onDelete('cascade');
+            $table->foreignId('district_id')->after('province_id')->references('id')->on('districts')->onDelete('cascade');
+            $table->foreignId('sub_district_id')->after('district_id')->references('id')->on('sub_districts')->onDelete('cascade');
             $table->string('avatar')->nullable()->comment('รูป')->after('sub_district_id');
             $table->tinyInteger('type')->default(2)->comment('1-employee 2-customer')->after('avatar');
         });
