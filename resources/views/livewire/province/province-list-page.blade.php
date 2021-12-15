@@ -19,7 +19,7 @@
                             type="button" 
                             class="btn btn-primary"
                             data-toggle="modal"  
-                            data-target="#modal-xl">
+                            data-target="#modal">
                             <i class="fas fa-plus"></i> เพิ่มข้อมูล
                           </button>
                       </div>
