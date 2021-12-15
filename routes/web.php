@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\Province\ProvinceListPage;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +23,10 @@ Route::get('/dashboard', function () {
 })->middleware(['auth',"role:admin"])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+Route::group([
+    'prefix' => 'provinces',
+    'as' => 'province.'
+],function(){
+    Route::get('/',ProvinceListPage::class)->name('list');
+});

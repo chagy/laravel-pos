@@ -79,6 +79,24 @@
             </li>
             <li class="nav-header">ตั้งค่า</li>
             <li class="nav-item">
+                <a href="{!! route('province.list') !!}" class="nav-link {{ \Request::routeIs('province.list') ? 'active' : '' }}">
+                    <i class="nav-icon fas fa-list"></i>
+                    <p>จังหวัด</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="" class="nav-link">
+                    <i class="nav-icon fas fa-list-ul"></i>
+                    <p>อำเภอ</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="" class="nav-link">
+                    <i class="nav-icon fas fa-list-ol"></i>
+                    <p>ตำบล</p>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a href="" class="nav-link">
                     <i class="nav-icon fas fa-users text-success"></i>
                     <p>ลูกค้า</p>
