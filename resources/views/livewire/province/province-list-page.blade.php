@@ -14,7 +14,12 @@
                         wire:model="searchTerm" />
   
                       <div class="input-group-append">
-                        <button type="button" class="btn btn-primary">
+                          @livewire('province.province-form')
+                        <button 
+                            type="button" 
+                            class="btn btn-primary"
+                            data-toggle="modal"  
+                            data-target="#modal-xl">
                             <i class="fas fa-plus"></i> เพิ่มข้อมูล
                           </button>
                       </div>
@@ -66,3 +71,5 @@
         </div>
     </div>
 </div>
+
+
