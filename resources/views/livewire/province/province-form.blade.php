@@ -16,9 +16,14 @@
                                     <label for="prov_code">รหัส</label>
                                     <input
                                         type="text"
-                                        class="form-control" 
+                                        class="form-control @error('prov_code') is-invalid @enderror" 
                                         placeholder="รหัสจังหวัด" 
                                         wire:model="prov_code"/>
+                                    @error('prov_code')
+                                    <div id="prov_code_validation" class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-12 col-md-6">
@@ -26,9 +31,14 @@
                                     <label for="prov_name">ชื่อ</label>
                                     <input
                                         type="text"
-                                        class="form-control" 
+                                        class="form-control @error('prov_name') is-invalid @enderror" 
                                         placeholder="รหัสจังหวัด" 
                                         wire:model="prov_name"/>
+                                    @error('prov_name')
+                                    <div id="prov_name_validation" class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-12 col-md-6">

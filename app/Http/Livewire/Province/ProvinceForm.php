@@ -13,11 +13,20 @@ class ProvinceForm extends Component
     public $prov_status = 1;
     public $prov_desc;
 
-   
+    protected $rules = [
+        'prov_code' => 'required',
+        'prov_name' => 'required'
+    ];
+
+    protected $messages = [
+        'prov_code.required' => 'กรุณากรอกรหัสจังหวัด',
+        'prov_name.required' => 'กรุณากรอกชื่อจังหวัด'
+    ];
 
     public function save()
     {
-        $this->validate($this->rules);
+        $this->validate($this->rules,$this->messages);
+
         Province::updateOrCreate([
             'id' => $this->idKey
         ],[
