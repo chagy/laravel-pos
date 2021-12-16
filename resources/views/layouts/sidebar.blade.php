@@ -85,7 +85,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{!! route('district.list') !!}" class="nav-link {{ \Request::routeIs('district.list') ? 'active' : '' }}">
                     <i class="nav-icon fas fa-list-ul"></i>
                     <p>อำเภอ</p>
                 </a>

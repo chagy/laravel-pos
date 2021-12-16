@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\District\DistrictListPage;
 use App\Http\Livewire\Province\ProvinceListPage;
 
 /*
@@ -29,4 +30,11 @@ Route::group([
     'as' => 'province.'
 ],function(){
     Route::get('/',ProvinceListPage::class)->name('list');
+});
+
+Route::group([
+    'prefix' => 'districts',
+    'as' => 'district.'
+],function(){
+    Route::get('/',DistrictListPage::class)->name('list');
 });
