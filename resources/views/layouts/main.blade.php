@@ -56,5 +56,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{ asset('assets/dist/js/adminlte.min.js') }}"></script>
 
 @livewireScripts
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+  window.addEventListener('swal',function(e){
+    Swal.fire({
+      title: e.detail.title,
+      timer: e.detail.timer,
+      icon: e.detail.icon
+    }).then(function(){
+      if(e.detail.url){
+        window.location = e.detail.url;
+      }
+    })
+  })
+
+  window.livewire.on("modalHide",() => {
+    $("#modal").modal("hide");
+  })
+</script>
 </body>
 </html>

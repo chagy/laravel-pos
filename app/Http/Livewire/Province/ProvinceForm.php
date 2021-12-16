@@ -13,8 +13,11 @@ class ProvinceForm extends Component
     public $prov_status = 1;
     public $prov_desc;
 
+   
+
     public function save()
     {
+        $this->validate($this->rules);
         Province::updateOrCreate([
             'id' => $this->idKey
         ],[
@@ -23,6 +26,14 @@ class ProvinceForm extends Component
             'prov_status' => $this->prov_status,
             'prov_desc' => $this->prov_desc,
         ]);
+
+        $this->dispatchBrowserEvent('swal',[
+            'title' => 'บันทึกข้อมูลจังหวัดเรียบร้อย',
+            'timer' => 3000,
+            'icon' => 'success'
+        ]);
+
+        $this->emit("modalHide");
     }
 
     public function render()
