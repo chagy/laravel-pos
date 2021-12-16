@@ -14,6 +14,10 @@ class ProvinceListPage extends Component
     
     public $searchTerm;
 
+    protected $listeners = [
+        'refreshProvinceList' => '$refresh'
+    ];
+
     public function render()
     {
         $provinces = Province::query();

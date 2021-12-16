@@ -13,6 +13,11 @@ class ProvinceForm extends Component
     public $prov_status = 1;
     public $prov_desc;
 
+    protected $listeners = [
+        'editProvince' => 'edit',
+        'btnCreateProvince' => 'resetInput'
+    ];
+
     protected $rules = [
         'prov_code' => 'required',
         'prov_name' => 'required'
@@ -22,6 +27,24 @@ class ProvinceForm extends Component
         'prov_code.required' => 'กรุณากรอกรหัสจังหวัด',
         'prov_name.required' => 'กรุณากรอกชื่อจังหวัด'
     ];
+
+    public function edit($id)
+    {
+        $province = Province::findOrFail($id);
+        $this->idKey = $province->id;
+        $this->prov_code = $province->prov_code;
+        $this->prov_name = $province->prov_name;
+        $this->prov_status = $province->prov_status;
+        $this->prov_desc = $province->prov_desc;
+    }
+
+    public function resetInput()
+    {
+        $this->reset('prov_code');
+        $this->reset('prov_name');
+        $this->reset('prov_status');
+        $this->reset('prov_desc');
+    }
 
     public function save()
     {
@@ -35,6 +58,10 @@ class ProvinceForm extends Component
             'prov_status' => $this->prov_status,
             'prov_desc' => $this->prov_desc,
         ]);
+
+        $this->resetInput();
+
+        $this->emit("refreshProvinceList");
 
         $this->dispatchBrowserEvent('swal',[
             'title' => 'บันทึกข้อมูลจังหวัดเรียบร้อย',
