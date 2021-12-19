@@ -3,7 +3,7 @@
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">ข้อมูลจังหวัด</h4>
+                    <h4 class="modal-title">ข้อมูลอำเภอ</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -13,14 +13,17 @@
                         <div class="row">
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
-                                    <label for="prov_code">รหัส</label>
-                                    <input
-                                        type="text"
-                                        class="form-control @error('prov_code') is-invalid @enderror" 
-                                        placeholder="รหัสจังหวัด" 
-                                        wire:model="prov_code"/>
-                                    @error('prov_code')
-                                    <div id="prov_code_validation" class="invalid-feedback">
+                                    <label for="province_id">จังหวัด</label>
+                                    <select
+                                        class="form-control @error('province_id') is-invalid @enderror" 
+                                        wire:model="province_id">
+                                        <option value="">-- กรุณาเลือกจังหวัด --</option>
+                                        @foreach ($provinces as $item)
+                                        <option value="{{ $item->id }}">{{ $item->prov_name }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('province_id')
+                                    <div id="province_id_validation" class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                     @enderror
@@ -28,14 +31,14 @@
                             </div>
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
-                                    <label for="prov_name">ชื่อ</label>
+                                    <label for="dist_code">รหัส</label>
                                     <input
                                         type="text"
-                                        class="form-control @error('prov_name') is-invalid @enderror" 
-                                        placeholder="ชื่อจังหวัด" 
-                                        wire:model="prov_name"/>
-                                    @error('prov_name')
-                                    <div id="prov_name_validation" class="invalid-feedback">
+                                        class="form-control @error('dist_code') is-invalid @enderror" 
+                                        placeholder="รหัสอำเภอ" 
+                                        wire:model="dist_code"/>
+                                    @error('dist_code')
+                                    <div id="dist_code_validation" class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                     @enderror
@@ -43,10 +46,25 @@
                             </div>
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
-                                    <label for="prov_status">สถานะ</label>
+                                    <label for="dist_name">ชื่อ</label>
+                                    <input
+                                        type="text"
+                                        class="form-control @error('dist_name') is-invalid @enderror" 
+                                        placeholder="ชื่ออำเภอ" 
+                                        wire:model="dist_name"/>
+                                    @error('dist_name')
+                                    <div id="dist_name_validation" class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="dist_status">สถานะ</label>
                                     <select
                                         class="form-control" 
-                                        wire:model="prov_status">
+                                        wire:model="dist_status">
                                         <option value="1">ใช้งาน</option>
                                         <option value="0">ยกเลิก</option>
                                     </select>
@@ -54,10 +72,10 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="prov_desc">รายละเอียด</label>
+                            <label for="dist_desc">รายละเอียด</label>
                             <textarea
                                 class="form-control" 
-                                wire:model="prov_desc"></textarea>
+                                wire:model="dist_desc"></textarea>
                         </div>
                     </form>
                 </div>

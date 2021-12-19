@@ -14,13 +14,13 @@
                         wire:model="searchTerm" />
   
                       <div class="input-group-append">
-                          @livewire('province.province-form')
+                          @livewire('district.district-form')
                         <button 
                             type="button" 
                             class="btn btn-primary"
                             data-toggle="modal"  
                             data-target="#modal" 
-                            wire:click="$emit('btnCreateProvince')">
+                            wire:click="$emit('btnCreateDistrict')">
                             <i class="fas fa-plus"></i> เพิ่มข้อมูล
                           </button>
                       </div>
@@ -58,7 +58,7 @@
                                     class="btn btn-sm btn-warning" 
                                     data-toggle="modal"  
                                     data-target="#modal" 
-                                    wire:click="$emit('editProvince',{{ $item->id }})">
+                                    wire:click="$emit('editDistrict',{{ $item->id }})">
                                     <i class="fas fa-edit"></i>
                                 </button>
                             </td>
