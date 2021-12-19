@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\District\DistrictListPage;
 use App\Http\Livewire\Province\ProvinceListPage;
+use App\Http\Livewire\SubDistrict\SubDistrictListPage;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,3 +39,11 @@ Route::group([
 ],function(){
     Route::get('/',DistrictListPage::class)->name('list');
 });
+
+Route::group([
+    'prefix' => 'sub-districts',
+    'as' => 'sub.district.'
+],function(){
+    Route::get('/',SubDistrictListPage::class)->name('list');
+});
+
