@@ -109,7 +109,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{!! route('supplier.list') !!}" class="nav-link {{ \Request::routeIs('supplier.list') ? 'active' : '' }}">
                     <i class="nav-icon fas fa-house-damage text-danger"></i>
                     <p>ผู้ผลิต</p>
                 </a>
