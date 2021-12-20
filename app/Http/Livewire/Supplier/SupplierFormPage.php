@@ -6,6 +6,46 @@ use Livewire\Component;
 
 class SupplierFormPage extends Component
 {
+    public $sup_name;
+    public $sup_tax_number;
+    public $sup_email;
+    public $sup_phone;
+    public $sup_address;
+    public $province_id;
+    public $district_id;
+    public $sub_district_id;
+    public $sup_zip_code;
+    public $sup_contact_name;
+    public $sup_contact_phone;
+    public $sup_status=1;
+
+    protected $rules = [
+        'sup_name' => 'required',
+        'sup_address' => 'required',
+        'province_id' => 'required',
+        'district_id' => 'required',
+        'sub_district_id' => 'required',
+        'sup_zip_code' => 'required',
+        'sup_contact_name' => 'required',
+        'sup_contact_phone' => 'required',
+    ];
+
+    protected $messages = [
+        'sup_name.required' => 'กรุณากรอกชื่อบริษัท',
+        'sup_address.required' => 'กรุณากรอกที่อยู่',
+        'province_id.required' => 'กรุณาเลือกจังหวัด',
+        'district_id.required' => 'กรุณาเลือกอำเภอ',
+        'sub_district_id.required' => 'กรุณาเลือกตำบล',
+        'sup_zip_code.required' => 'กรุณากรอกรหัสไปรษณีย์',
+        'sup_contact_name.required' => 'กรุณากรอกชื่อผู้ติดต่อ',
+        'sup_contact_phone.required' => 'กรุณากรอกเบอร์โทรผู้ติดต่อ',
+    ];
+
+    public function save()
+    {
+        $this->validate($this->rules,$this->messages);
+    }
+
     public function render()
     {
         return view('livewire.supplier.supplier-form-page')->extends('layouts.main');
