@@ -14,14 +14,11 @@
                         wire:model="searchTerm" />
   
                       <div class="input-group-append">
-                        <button 
-                            type="button" 
-                            class="btn btn-primary"
-                            data-toggle="modal"  
-                            data-target="#modal" 
-                            wire:click="$emit('btnCreateSubDistrict')">
-                            <i class="fas fa-plus"></i> เพิ่มข้อมูล
-                          </button>
+                        <a 
+                          href="{!! route('supplier.create') !!}"
+                          class="btn btn-primary">
+                          <i class="fas fa-plus"></i> เพิ่มข้อมูล
+                        </a>
                       </div>
                     </div>
                   </div>
