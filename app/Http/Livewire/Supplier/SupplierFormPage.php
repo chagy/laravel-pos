@@ -3,6 +3,9 @@
 namespace App\Http\Livewire\Supplier;
 
 use Livewire\Component;
+use App\Models\District;
+use App\Models\Province;
+use App\Models\SubDistrict;
 
 class SupplierFormPage extends Component
 {
@@ -18,6 +21,9 @@ class SupplierFormPage extends Component
     public $sup_contact_name;
     public $sup_contact_phone;
     public $sup_status=1;
+
+    public $districts = [];
+    public $subDistricts = [];
 
     protected $rules = [
         'sup_name' => 'required',
@@ -48,6 +54,21 @@ class SupplierFormPage extends Component
 
     public function render()
     {
-        return view('livewire.supplier.supplier-form-page')->extends('layouts.main');
+        if($this->province_id){
+            $this->districts = District::where('dist_status',1)->where('province_id',$this->province_id)->get();
+        }
+        
+        if($this->district_id){
+            $this->subDistricts = SubDistrict::where('subd_status',1)->where('district_id',$this->district_id)->get();
+        }
+
+        if($this->sub_district_id){
+            $subd = SubDistrict::findOrFail($this->sub_district_id);
+            $this->sup_zip_code = $subd->subd_zip_code;
+        }
+
+        return view('livewire.supplier.supplier-form-page',[
+            'provinces' => Province::where('prov_status',1)->orderBy('prov_name','asc')->get(),
+        ])->extends('layouts.main');
     }
 }
