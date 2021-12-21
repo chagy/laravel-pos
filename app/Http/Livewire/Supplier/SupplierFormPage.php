@@ -98,6 +98,27 @@ class SupplierFormPage extends Component
         $this->reset('sup_status');
     }
 
+    public function mount($id = 0)
+    {
+        if($id > 0)
+        {
+            $sup = Supplier::findOrFail($id);
+            $this->idKey = $sup->id;
+            $this->sup_name = $sup->sup_name;
+            $this->sup_tax_number = $sup->sup_tax_number;
+            $this->sup_email = $sup->sup_email;
+            $this->sup_phone = $sup->sup_phone;
+            $this->sup_address = $sup->sup_address;
+            $this->province_id = $sup->province_id;
+            $this->district_id = $sup->district_id;
+            $this->sub_district_id = $sup->sub_district_id;
+            $this->sup_zip_code = $sup->sup_zip_code;
+            $this->sup_contact_name = $sup->sup_contact_name;
+            $this->sup_contact_phone = $sup->sup_contact_phone;
+            $this->sup_status = $sup->sup_status;
+        }
+    }
+
     public function render()
     {
         if($this->province_id){

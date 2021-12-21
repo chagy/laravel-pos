@@ -55,5 +55,6 @@ Route::group([
 ],function(){
     Route::get('/',SupplierListPage::class)->name('list');
     Route::get('/create',SupplierFormPage::class)->name('create');
+    Route::get('/update/{id}',SupplierFormPage::class)->name('update');
 });
 
