@@ -44,7 +44,7 @@
                             <td>{{ $item->sup_contact_name }}</td>
                             <td>{{ $item->sup_contact_phone }}</td>
                             <td class="text-center">
-                              @if ($item->subd_status)
+                              @if ($item->sup_status)
                                 <span class="badge badge-success">ใช้งาน</span>
                               @else
                                 <span class="badge badge-danger">ยกเลิก</span>

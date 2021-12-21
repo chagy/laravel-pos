@@ -5,10 +5,12 @@ namespace App\Http\Livewire\Supplier;
 use Livewire\Component;
 use App\Models\District;
 use App\Models\Province;
+use App\Models\Supplier;
 use App\Models\SubDistrict;
 
 class SupplierFormPage extends Component
 {
+    public $idKey=0;
     public $sup_name;
     public $sup_tax_number;
     public $sup_email;
@@ -50,6 +52,50 @@ class SupplierFormPage extends Component
     public function save()
     {
         $this->validate($this->rules,$this->messages);
+
+        Supplier::updateOrCreate([
+            'id' => $this->idKey
+        ],[
+            'sup_name' => $this->sup_name,
+            'sup_tax_number' => $this->sup_tax_number,
+            'sup_email' => $this->sup_email,
+            'sup_phone' => $this->sup_phone,
+            'sup_address' => $this->sup_address,
+            'province_id' => $this->province_id,
+            'district_id' => $this->district_id,
+            'sub_district_id' => $this->sub_district_id,
+            'sup_zip_code' => $this->sup_zip_code,
+            'sup_contact_name' => $this->sup_contact_name,
+            'sup_contact_phone' => $this->sup_contact_phone,
+            'sup_status' => $this->sup_status,
+        ]);
+
+        $this->resetInput();
+
+        $this->dispatchBrowserEvent('swal',[
+            'title' => 'บันทึกข้อมูลผู้ผลิตเรียบร้อย',
+            'timer' => 3000,
+            'icon' => 'success',
+            'url' => route('supplier.list')
+        ]);
+
+    }
+
+    public function resetInput()
+    {
+        $this->reset('idKey');
+        $this->reset('sup_name');
+        $this->reset('sup_tax_number');
+        $this->reset('sup_email');
+        $this->reset('sup_phone');
+        $this->reset('sup_address');
+        $this->reset('province_id');
+        $this->reset('district_id');
+        $this->reset('sub_district_id');
+        $this->reset('sup_zip_code');
+        $this->reset('sup_contact_name');
+        $this->reset('sup_contact_phone');
+        $this->reset('sup_status');
     }
 
     public function render()
