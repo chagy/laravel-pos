@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\District\DistrictListPage;
+use App\Http\Livewire\Employee\EmployeeFormPage;
 use App\Http\Livewire\Employee\EmployeeListPage;
 use App\Http\Livewire\Province\ProvinceListPage;
 use App\Http\Livewire\Supplier\SupplierFormPage;
@@ -64,4 +65,5 @@ Route::group([
     'as' => 'employee.'
 ],function(){
     Route::get('/',EmployeeListPage::class)->name('list');
+    Route::get('/create',EmployeeFormPage::class)->name('create');
 });
