@@ -44,11 +44,16 @@
                                     <label for="username">Username</label>
                                     <input 
                                         type="text" 
-                                        class="form-control" 
+                                        class="form-control @error('username') is-invalid @enderror" 
                                         name="username"
                                         id="username" 
                                         placeholder="Username" 
                                         wire:model="username"/>
+                                    @error('username')
+                                    <div id="username_validation" class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-12 col-md-6">
@@ -56,11 +61,16 @@
                                     <label for="password">Password</label>
                                     <input 
                                         type="text" 
-                                        class="form-control" 
+                                        class="form-control @error('password') is-invalid @enderror" 
                                         name="password"
                                         id="password" 
                                         placeholder="Password" 
                                         wire:model="password"/>
+                                    @error('password')
+                                    <div id="password_validation" class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-12 col-md-6">
@@ -68,27 +78,32 @@
                                     <label for="phone">เบอร์โทร</label>
                                     <input 
                                         type="text" 
-                                        class="form-control" 
+                                        class="form-control @error('phone') is-invalid @enderror" 
                                         name="phone"
                                         id="phone" 
                                         placeholder="เบอร์โทร" 
                                         wire:model="phone"/>
+                                    @error('phone')
+                                    <div id="phone_validation" class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12 col-md-12">
                                 <div class="form-group">
-                                    <label for="sup_address">ที่อยู่</label>
+                                    <label for="address">ที่อยู่</label>
                                     <input 
                                         type="text" 
-                                        class="form-control @error('sup_address') is-invalid @enderror" 
-                                        name="sup_address"
-                                        id="sup_address" 
+                                        class="form-control @error('address') is-invalid @enderror" 
+                                        name="address"
+                                        id="address" 
                                         placeholder="ที่อยู่" 
-                                        wire:model="sup_address"/>
-                                    @error('sup_address')
-                                    <div id="sup_address_validation" class="invalid-feedback">
+                                        wire:model="address"/>
+                                    @error('address')
+                                    <div id="address_validation" class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                     @enderror

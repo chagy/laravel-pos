@@ -9,6 +9,7 @@ use App\Models\SubDistrict;
 
 class EmployeeFormPage extends Component
 {
+    public $idKey=0;
     public $name;
     public $email;
     public $password;
@@ -24,6 +25,54 @@ class EmployeeFormPage extends Component
 
     public $districts = [];
     public $subDistricts = [];
+
+    public function rulesValidate()
+    {
+        if($this->idKey){
+            return [
+                'name' => 'required',
+                'username' => 'required|unique:users,username,'.$this->idKey,
+                'password' => 'required|min:8',
+                'phone' => 'required',
+                'address' => 'required',
+                'province_id' => 'required',
+                'district_id' => 'required',
+                'sub_district_id' => 'required',
+                'zip_code' => 'required'
+            ];
+        }else{
+            return [
+                'name' => 'required',
+                'username' => 'required|unique:users,username',
+                'password' => 'required|min:8',
+                'phone' => 'required',
+                'address' => 'required',
+                'province_id' => 'required',
+                'district_id' => 'required',
+                'sub_district_id' => 'required',
+                'zip_code' => 'required'
+            ];
+        }
+    }
+
+    protected $messages = [
+        'name.required' => 'กรุณากรอกชื่อ',
+        'username.required' => 'กรุณากรอก Username',
+        'username.unique' => 'Username นี้มีอยู่ในระบบแล้ว',
+        'password.required' => 'กรุณากรอกรหัสผ่าน',
+        'password.min' => 'กรุณากรอกรหัสผ่าน 8 ตัวอักษรขึ้นไป',
+        'phone.required' => 'กรุณากรอกเบอร์โทรศัพท์',
+        'address.required' => 'กรุณากรอกที่อยู่',
+        'province_id.required' => 'กรุณาเลือกจังหวัด',
+        'district_id.required' => 'กรุณาเลือกอำเภอ',
+        'sub_district_id.required' => 'กรุณาเลือกตำบล',
+        'zip_code.required' => 'กรุณากรอกรหัสไปรษณีย์'
+    ];
+
+    public function save()
+    {
+        $this->validate($this->rulesValidate(),$this->messages);
+    }
 
     public function render()
     {
