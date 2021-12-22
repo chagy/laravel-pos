@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\District\DistrictListPage;
+use App\Http\Livewire\Employee\EmployeeListPage;
 use App\Http\Livewire\Province\ProvinceListPage;
 use App\Http\Livewire\Supplier\SupplierFormPage;
 use App\Http\Livewire\Supplier\SupplierListPage;
@@ -58,3 +59,9 @@ Route::group([
     Route::get('/update/{id}',SupplierFormPage::class)->name('update');
 });
 
+Route::group([
+    'prefix' => 'employees',
+    'as' => 'employee.'
+],function(){
+    Route::get('/',EmployeeListPage::class)->name('list');
+});

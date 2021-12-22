@@ -103,7 +103,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{!! route('employee.list') !!}" class="nav-link {{ \Request::routeIs('employee.list') ? 'active' : '' }}">
                     <i class="nav-icon fas fa-user text-primary"></i>
                     <p>พนักงาน</p>
                 </a>
