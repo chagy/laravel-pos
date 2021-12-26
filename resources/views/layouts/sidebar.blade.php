@@ -97,7 +97,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{!! route('customer.list') !!}" class="nav-link {{ \Request::routeIs('customer.list') ? 'active' : '' }}">
                     <i class="nav-icon fas fa-users text-success"></i>
                     <p>ลูกค้า</p>
                 </a>

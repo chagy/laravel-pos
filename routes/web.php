@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\Customer\CustomerListPage;
 use App\Http\Livewire\District\DistrictListPage;
 use App\Http\Livewire\Employee\EmployeeFormPage;
 use App\Http\Livewire\Employee\EmployeeListPage;
@@ -67,4 +68,13 @@ Route::group([
     Route::get('/',EmployeeListPage::class)->name('list');
     Route::get('/create',EmployeeFormPage::class)->name('create');
     Route::get('/update/{id}',EmployeeFormPage::class)->name('update');
+});
+
+Route::group([
+    'prefix' => 'customers',
+    'as' => 'customer.'
+],function(){
+    Route::get('/',CustomerListPage::class)->name('list');
+    // Route::get('/create',CustomerFormPage::class)->name('create');
+    // Route::get('/update/{id}',CustomerFormPage::class)->name('update');
 });
