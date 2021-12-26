@@ -38,8 +38,8 @@
                         @foreach ($employees as $item)
                         <tr>
                             <td>{{ $item->id }}</td>
-                            <td>{{ $item->dist_code }}</td>
-                            <td>{{ $item->dist_name }} ( {{ $item->province->prov_name }} )</td>
+                            <td>{{ $item->name }}</td>
+                            <td>{{ $item->phone }}</td>
                             <td>
                                 <button 
                                     type="button" 

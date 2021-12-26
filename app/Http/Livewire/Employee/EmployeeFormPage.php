@@ -2,10 +2,12 @@
 
 namespace App\Http\Livewire\Employee;
 
+use App\Models\User;
 use Livewire\Component;
 use App\Models\District;
 use App\Models\Province;
 use App\Models\SubDistrict;
+use Illuminate\Support\Facades\Hash;
 
 class EmployeeFormPage extends Component
 {
@@ -72,6 +74,33 @@ class EmployeeFormPage extends Component
     public function save()
     {
         $this->validate($this->rulesValidate(),$this->messages);
+
+        if($this->idKey > 0){
+
+        }else{
+            $employee = new User();
+            $employee->name = $this->name;
+            $employee->email = $this->email;
+            $employee->password = Hash::make($this->password);
+            $employee->username = $this->username;
+            $employee->phone = $this->phone;
+            $employee->address = $this->address;
+            $employee->province_id = $this->province_id;
+            $employee->district_id = $this->district_id;
+            $employee->sub_district_id = $this->sub_district_id;
+            $employee->zip_code = $this->zip_code;
+            $employee->avatar = $this->avatar;
+            $employee->type = $this->type;
+        }
+
+        $employee->save();
+
+        $this->dispatchBrowserEvent('swal',[
+            'title' => 'บันทึกข้อมูลอำเภอเรียบร้อย',
+            'timer' => 3000,
+            'icon' => 'success',
+            'url' => route('employee.list')
+        ]);
     }
 
     public function render()
