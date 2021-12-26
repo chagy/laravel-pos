@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\Customer\CustomerFormPage;
 use App\Http\Livewire\Customer\CustomerListPage;
 use App\Http\Livewire\District\DistrictListPage;
 use App\Http\Livewire\Employee\EmployeeFormPage;
@@ -75,6 +76,6 @@ Route::group([
     'as' => 'customer.'
 ],function(){
     Route::get('/',CustomerListPage::class)->name('list');
-    // Route::get('/create',CustomerFormPage::class)->name('create');
-    // Route::get('/update/{id}',CustomerFormPage::class)->name('update');
+    Route::get('/create',CustomerFormPage::class)->name('create');
+    Route::get('/update/{id}',CustomerFormPage::class)->name('update');
 });

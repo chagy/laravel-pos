@@ -15,7 +15,7 @@
   
                       <div class="input-group-append">
                         <a
-                            href="{!! route('employee.create') !!}" 
+                            href="{!! route('customer.create') !!}" 
                             class="btn btn-primary">
                             <i class="fas fa-plus"></i> เพิ่มข้อมูล
                           </a>
@@ -51,7 +51,7 @@
                             <td>{{ $item->phone }}</td>
                             <td>
                                 <a
-                                  href="{!! route('employee.update',$item->id) !!}"
+                                  href="{!! route('customer.update',$item->id) !!}"
                                     class="btn btn-sm btn-warning" >
                                     <i class="fas fa-edit"></i>
                                 </a>
