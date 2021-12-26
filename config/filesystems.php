@@ -42,6 +42,13 @@ return [
             'visibility' => 'public',
         ],
 
+        'employee' => [
+            'driver' => 'local',
+            'root' => public_path('images/employees'),
+            'url' => env('APP_URL').'/images',
+            'visibility' => 'public',
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

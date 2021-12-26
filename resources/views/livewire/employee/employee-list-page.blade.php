@@ -29,6 +29,7 @@
                     <thead>
                       <tr>
                         <th style="width: 10px">#</th>
+                        <th>รูป</th>
                         <th>ชื่อ</th>
                         <th>เบอร์โทร</th>
                         <th style="width: 40px">Action</th>
@@ -38,6 +39,14 @@
                         @foreach ($employees as $item)
                         <tr>
                             <td>{{ $item->id }}</td>
+                            <td class="text-center">
+                              @if ($item->avatar)
+                                  <img 
+                                    class="profile-user-img img-fluid img-circle" 
+                                    src="{{ asset('/images/employees/'.$item->avatar) }}" 
+                                    width="100px"/>
+                              @endif
+                            </td>
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->phone }}</td>
                             <td>

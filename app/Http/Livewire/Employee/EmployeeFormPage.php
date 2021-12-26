@@ -7,10 +7,16 @@ use Livewire\Component;
 use App\Models\District;
 use App\Models\Province;
 use App\Models\SubDistrict;
+use Illuminate\Support\Str;
+use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManagerStatic;
 
 class EmployeeFormPage extends Component
 {
+    use WithFileUploads;
+    
     public $idKey=0;
     public $name;
     public $email;
@@ -71,6 +77,18 @@ class EmployeeFormPage extends Component
         'zip_code.required' => 'กรุณากรอกรหัสไปรษณีย์'
     ];
 
+    public function storeImage()
+    {
+        if(!$this->avatar){
+            return null;
+        }
+
+        $img = ImageManagerStatic::make($this->avatar)->encode('png');
+        $name = date('YmdHis').Str::random().'.png';
+        Storage::disk('employee')->put($name,$img);
+        return $name;
+    }
+
     public function save()
     {
         $this->validate($this->rulesValidate(),$this->messages);
@@ -89,7 +107,7 @@ class EmployeeFormPage extends Component
             $employee->district_id = $this->district_id;
             $employee->sub_district_id = $this->sub_district_id;
             $employee->zip_code = $this->zip_code;
-            $employee->avatar = $this->avatar;
+            $employee->avatar = $this->storeImage();
             $employee->type = $this->type;
         }
 
