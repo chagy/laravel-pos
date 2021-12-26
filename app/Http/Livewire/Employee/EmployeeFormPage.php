@@ -40,7 +40,6 @@ class EmployeeFormPage extends Component
             return [
                 'name' => 'required',
                 'username' => 'required|unique:users,username,'.$this->idKey,
-                'password' => 'required|min:8',
                 'phone' => 'required',
                 'address' => 'required',
                 'province_id' => 'required',
@@ -89,27 +88,49 @@ class EmployeeFormPage extends Component
         return $name;
     }
 
+    public function mount($id = 0)
+    {
+        if($id > 0)
+        {
+            $employee = User::findOrFail($id);
+            $this->idKey = $employee->id;
+            $this->name = $employee->name;
+            $this->email = $employee->email;
+            $this->username = $employee->username;
+            $this->phone = $employee->phone;
+            $this->address = $employee->address;
+            $this->province_id = $employee->province_id;
+            $this->district_id = $employee->district_id;
+            $this->sub_district_id = $employee->sub_district_id;
+            $this->zip_code = $employee->zip_code;
+            $this->type = $employee->type;
+        }
+    }
+
     public function save()
     {
         $this->validate($this->rulesValidate(),$this->messages);
 
-        if($this->idKey > 0){
+        $employee = new User();
 
+        if($this->idKey > 0){
+            $employee = User::findOrFail($this->idKey);
+            $employee->password = $this->password ? Hash::make($this->password) : $employee->password;
         }else{
-            $employee = new User();
-            $employee->name = $this->name;
-            $employee->email = $this->email;
             $employee->password = Hash::make($this->password);
-            $employee->username = $this->username;
-            $employee->phone = $this->phone;
-            $employee->address = $this->address;
-            $employee->province_id = $this->province_id;
-            $employee->district_id = $this->district_id;
-            $employee->sub_district_id = $this->sub_district_id;
-            $employee->zip_code = $this->zip_code;
-            $employee->avatar = $this->storeImage();
-            $employee->type = $this->type;
         }
+
+        $employee->name = $this->name;
+        $employee->email = $this->email;
+        $employee->username = $this->username;
+        $employee->phone = $this->phone;
+        $employee->address = $this->address;
+        $employee->province_id = $this->province_id;
+        $employee->district_id = $this->district_id;
+        $employee->sub_district_id = $this->sub_district_id;
+        $employee->zip_code = $this->zip_code;
+        $employee->avatar = $this->storeImage();
+        $employee->type = $this->type;
 
         $employee->save();
 

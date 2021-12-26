@@ -66,4 +66,5 @@ Route::group([
 ],function(){
     Route::get('/',EmployeeListPage::class)->name('list');
     Route::get('/create',EmployeeFormPage::class)->name('create');
+    Route::get('/update/{id}',EmployeeFormPage::class)->name('update');
 });

@@ -50,14 +50,11 @@
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->phone }}</td>
                             <td>
-                                <button 
-                                    type="button" 
-                                    class="btn btn-sm btn-warning" 
-                                    data-toggle="modal"  
-                                    data-target="#modal" 
-                                    wire:click="$emit('editDistrict',{{ $item->id }})">
+                                <a
+                                  href="{!! route('employee.update',$item->id) !!}"
+                                    class="btn btn-sm btn-warning" >
                                     <i class="fas fa-edit"></i>
-                                </button>
+                                </a>
                             </td>
                         </tr> 
                         @endforeach
