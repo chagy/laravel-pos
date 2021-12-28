@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\Category\CategoryListPage;
 use App\Http\Livewire\Customer\CustomerFormPage;
 use App\Http\Livewire\Customer\CustomerListPage;
 use App\Http\Livewire\District\DistrictListPage;
@@ -78,4 +79,11 @@ Route::group([
     Route::get('/',CustomerListPage::class)->name('list');
     Route::get('/create',CustomerFormPage::class)->name('create');
     Route::get('/update/{id}',CustomerFormPage::class)->name('update');
+});
+
+Route::group([
+    'prefix' => 'categories',
+    'as' => 'category.'
+],function(){
+    Route::get('/',CategoryListPage::class)->name('list');
 });
