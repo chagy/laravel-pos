@@ -28,7 +28,7 @@
             </li>
             <li class="nav-header">สินค้า</li>
             <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{!! route('product.list') !!}" class="nav-link {{ \Request::routeIs('product.list') ? 'active' : '' }}">
                     <i class="nav-icon fas fa-cubes"></i>
                     <p>คลัง</p>
                 </a>
