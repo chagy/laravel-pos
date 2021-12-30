@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\Product\ProductFormPage;
 use App\Http\Livewire\Product\ProductListPage;
 use App\Http\Livewire\Category\CategoryListPage;
 use App\Http\Livewire\Customer\CustomerFormPage;
@@ -94,4 +95,6 @@ Route::group([
     'as' => 'product.'
 ],function(){
     Route::get('/',ProductListPage::class)->name('list');
+    Route::get('/create',ProductFormPage::class)->name('create');
+    Route::get('/update/{id}',ProductFormPage::class)->name('update');
 });

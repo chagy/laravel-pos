@@ -14,15 +14,11 @@
                         wire:model="searchTerm" />
   
                       <div class="input-group-append">
-                          @livewire('category.category-form')
-                        <button 
-                            type="button" 
-                            class="btn btn-primary"
-                            data-toggle="modal"  
-                            data-target="#modal" 
-                            wire:click="$emit('btnCreateCategory')">
+                        <a 
+                          href="{!! route('product.create') !!}"
+                          class="btn btn-primary">
                             <i class="fas fa-plus"></i> เพิ่มข้อมูล
-                          </button>
+                          </a>
                       </div>
                     </div>
                   </div>
