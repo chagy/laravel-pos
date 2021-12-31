@@ -156,6 +156,11 @@
                         </div>
                     </form>
                 </div>
+                <div wire:loading wire:target="save"  wire:loading.class="overlay" wire:loading.flex>
+                    <div class="d-flex justify-content-center align-items-center">
+                        <i class="fas fa-2x fa-sync fa-spin"></i>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
