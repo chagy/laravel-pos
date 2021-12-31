@@ -2,11 +2,18 @@
 
 namespace App\Http\Livewire\Product;
 
+use App\Models\Product;
 use Livewire\Component;
 use App\Models\Category;
+use Illuminate\Support\Str;
+use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManagerStatic;
 
 class ProductFormPage extends Component
 {
+    use WithFileUploads;
+    
     public $idKey = 0;
     public $category_id;
     public $prod_name;
@@ -54,9 +61,44 @@ class ProductFormPage extends Component
         'prod_qty.integer' => 'กรุณากรอกเป็นตัวเลขเท่านั้น',
     ];
 
+    public function storeImage()
+    {
+        if(!$this->prod_picture){
+            return null;
+        }
+
+        $img = ImageManagerStatic::make($this->prod_picture)->encode('png');
+        $name = date('YmdHis').Str::random().'.png';
+        Storage::disk('product')->put($name,$img);
+        return $name;
+    }
+
     public function save()
     {
         $this->validate($this->rules(),$this->messages);
+
+        $product = new Product();
+
+        $product->category_id = $this->category_id;
+        $product->prod_name = $this->prod_name;
+        $product->prod_unit = $this->prod_unit;
+        $product->prod_cost = $this->prod_cost;
+        $product->prod_price = $this->prod_price;
+        $product->prod_qty = $this->prod_qty;
+        $product->prod_discount = $this->prod_discount;
+        $product->prod_bar_code = $this->prod_bar_code;
+        $product->prod_picture = $this->storeImage();
+        $product->prod_status = $this->prod_status;
+
+        $product->save();
+
+        $this->dispatchBrowserEvent('swal',[
+            'title' => 'บันทึกข้อมูลสินค้าเรียบร้อย',
+            'timer' => 3000,
+            'icon' => 'success',
+            'url' => route('product.list')
+        ]);
+
     }
 
     public function render()
