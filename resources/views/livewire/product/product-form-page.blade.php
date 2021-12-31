@@ -148,6 +148,11 @@
                                         wire:model="prod_picture"/>
                                 </div>
                             </div>
+                            @if ($picture_old)
+                            <div class="col-12 col-md-12 mb-3 text-center">
+                                <img src="{!! asset('images/products/'.$picture_old) !!}" width="200px" />
+                            </div>  
+                            @endif
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-block btn-primary">

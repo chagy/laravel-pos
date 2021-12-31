@@ -53,14 +53,11 @@
                               @endif
                             </td>
                             <td>
-                                <button 
-                                    type="button" 
-                                    class="btn btn-sm btn-warning" 
-                                    data-toggle="modal"  
-                                    data-target="#modal" 
-                                    wire:click="$emit('editCategory',{{ $item->id }})">
+                                <a 
+                                  href="{!! route('product.update',$item->id) !!}"
+                                    class="btn btn-sm btn-warning" >
                                     <i class="fas fa-edit"></i>
-                                </button>
+                                </a>
                             </td>
                         </tr> 
                         @endforeach

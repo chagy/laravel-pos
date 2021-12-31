@@ -26,6 +26,8 @@ class ProductFormPage extends Component
     public $prod_picture;
     public $prod_status = 1;
 
+    public $picture_old;
+
     public function rules()
     {
         if($this->idKey){
@@ -79,6 +81,10 @@ class ProductFormPage extends Component
 
         $product = new Product();
 
+        if($this->idKey){
+            $product = Product::findOrFail($this->idKey);
+        }
+
         $product->category_id = $this->category_id;
         $product->prod_name = $this->prod_name;
         $product->prod_unit = $this->prod_unit;
@@ -87,7 +93,7 @@ class ProductFormPage extends Component
         $product->prod_qty = $this->prod_qty;
         $product->prod_discount = $this->prod_discount;
         $product->prod_bar_code = $this->prod_bar_code;
-        $product->prod_picture = $this->storeImage();
+        $product->prod_picture = !empty($this->prod_picture) ? $this->storeImage() : $this->picture_old;
         $product->prod_status = $this->prod_status;
 
         $product->save();
@@ -99,6 +105,23 @@ class ProductFormPage extends Component
             'url' => route('product.list')
         ]);
 
+    }
+
+    public function mount($id = 0)
+    {
+        $product = Product::findOrFail($id);
+
+        $this->idKey = $product->id;
+        $this->category_id = $product->category_id;
+        $this->prod_name = $product->prod_name;
+        $this->prod_unit = $product->prod_unit;
+        $this->prod_cost = $product->prod_cost;
+        $this->prod_price = $product->prod_price;
+        $this->prod_qty = $product->prod_qty;
+        $this->prod_discount = $product->prod_discount;
+        $this->prod_bar_code = $product->prod_bar_code;
+        $this->picture_old = $product->prod_picture;
+        $this->prod_status = $product->prod_status;
     }
 
     public function render()
