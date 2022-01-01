@@ -34,7 +34,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{!! route('import.list') !!}" class="nav-link {{ \Request::routeIs('import.list') ? 'active' : '' }}">
                     <i class="nav-icon fas fa-file-import"></i>
                     <p>นำเข้าคลัง</p>
                 </a>

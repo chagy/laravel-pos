@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\Import\ImportListPage;
 use App\Http\Livewire\Product\ProductFormPage;
 use App\Http\Livewire\Product\ProductListPage;
 use App\Http\Livewire\Category\CategoryListPage;
@@ -97,4 +98,11 @@ Route::group([
     Route::get('/',ProductListPage::class)->name('list');
     Route::get('/create',ProductFormPage::class)->name('create');
     Route::get('/update/{id}',ProductFormPage::class)->name('update');
+});
+
+Route::group([
+    'prefix' => 'imports',
+    'as' => 'import.'
+],function(){
+    Route::get('/',ImportListPage::class)->name('list');
 });
