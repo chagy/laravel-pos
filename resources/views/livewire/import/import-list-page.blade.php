@@ -15,7 +15,7 @@
   
                       <div class="input-group-append">
                         <a 
-                          href="{!! route('product.create') !!}"
+                          href="{!! route('import.create') !!}"
                           class="btn btn-primary">
                             <i class="fas fa-plus"></i> เพิ่มข้อมูล
                           </a>
