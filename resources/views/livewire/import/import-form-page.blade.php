@@ -51,7 +51,28 @@
                                 </div>
                             </div>
                         </div>
-                        
+                        <div class="row">
+                            <div class="col-12">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <th>ชื่อ</th>
+                                        <th>จำนวน</th>
+                                        <th>ราคาต่อหน่วย</th>
+                                        <th>ยอดรวม</th>
+                                        <th>
+                                            @livewire('import.select-product')
+                                            <button 
+                                                type="button" 
+                                                class="btn btn-block bg-maroon"
+                                                data-target="#modal"
+                                                data-toggle="modal">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
+                                        </th>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-block btn-primary">
                                 บันทึกข้อมูล
