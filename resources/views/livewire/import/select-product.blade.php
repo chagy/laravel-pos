@@ -9,6 +9,13 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                    <form >
+                        <input 
+                            type="text" 
+                            class="form-control mb-2" 
+                            placeholder="Search ...." 
+                            wire:model="searchTerm">
+                    </form>
                     <table class="table table-striped">
                         <thead>
                             <tr>
