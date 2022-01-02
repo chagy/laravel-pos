@@ -55,7 +55,7 @@
                             <div class="col-12">
                                 <table class="table table-bordered">
                                     <thead>
-                                        <th>ชื่อ</th>
+                                        <th width="30%">ชื่อ</th>
                                         <th>จำนวน</th>
                                         <th>ราคาต่อหน่วย</th>
                                         <th>ยอดรวม</th>
@@ -74,10 +74,62 @@
                                         @foreach ($inputs as $key => $item)
                                         <tr>
                                             <td>{{ $item['ipi_name'] }}</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td>
+                                                <div class="input-group">
+                                                    <input 
+                                                        type="number" 
+                                                        min="1" 
+                                                        name="ipi_qty[]"
+                                                        wire:model="inputs.{{$key}}.ipi_qty"
+                                                        class="form-control"
+                                                        style="text-align: center;" />
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text">
+                                                            {{ $item['ipi_unit'] }}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="input-group">
+                                                    <input 
+                                                        type="number" 
+                                                        min="1" 
+                                                        name="ipi_price[]"
+                                                        wire:model="inputs.{{$key}}.ipi_price"
+                                                        class="form-control"
+                                                        style="text-align: center;" />
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text">
+                                                           ฿
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="input-group">
+                                                    <input 
+                                                        type="number" 
+                                                        min="1" 
+                                                        name="ipi_total[]"
+                                                        wire:model="inputs.{{$key}}.ipi_total"
+                                                        class="form-control"
+                                                        style="text-align: right;" 
+                                                        readonly/>
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text">
+                                                           ฿
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <button 
+                                                    type="button" 
+                                                    class="btn btn-danger">
+                                                    <i class="fas fa-times"></i>
+                                                </button>
+                                            </td>
                                         </tr>
                                         @endforeach
                                     </tbody>
