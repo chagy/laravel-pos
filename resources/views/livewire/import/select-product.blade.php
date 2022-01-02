@@ -26,7 +26,14 @@
                                 <td>{{ $prod->prod_name }}</td>
                                 <td>{{ $prod->prod_unit }}</td>
                                 <td>{{ $prod->prod_cost }}</td>
-                                <td></td>
+                                <td>
+                                    <button 
+                                        type="button" 
+                                        class="btn bg-navy" 
+                                        wire:click.prevent="$emit('selectedProduct',{{ $prod->id }})">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>

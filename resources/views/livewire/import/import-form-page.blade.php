@@ -70,6 +70,17 @@
                                             </button>
                                         </th>
                                     </thead>
+                                    <tbody>
+                                        @foreach ($inputs as $key => $item)
+                                        <tr>
+                                            <td>{{ $item['ipi_name'] }}</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
