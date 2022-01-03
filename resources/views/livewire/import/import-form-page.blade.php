@@ -80,7 +80,9 @@
                                                         type="number" 
                                                         min="1" 
                                                         name="ipi_qty[]"
-                                                        wire:model="inputs.{{$key}}.ipi_qty"
+                                                        wire:model="inputs.{{$key}}.ipi_qty" 
+                                                        wire:keyup="sumRow({{$key}})" 
+                                                        wire:change="sumRow({{$key}})"
                                                         class="form-control"
                                                         style="text-align: center;" />
                                                     <div class="input-group-append">
@@ -96,7 +98,9 @@
                                                         type="number" 
                                                         min="1" 
                                                         name="ipi_price[]"
-                                                        wire:model="inputs.{{$key}}.ipi_price"
+                                                        wire:model="inputs.{{$key}}.ipi_price" 
+                                                        wire:keyup="sumRow({{$key}})" 
+                                                        wire:change="sumRow({{$key}})"
                                                         class="form-control"
                                                         style="text-align: center;" />
                                                     <div class="input-group-append">
@@ -133,6 +137,12 @@
                                         </tr>
                                         @endforeach
                                     </tbody>
+                                    <tfoot>
+                                        <td colspan="3">ยอดรวม</td>
+                                        <td class="bg-teal text-right">
+                                            {{ number_format($total,2) }}
+                                        </td>
+                                    </tfoot>
                                 </table>
                             </div>
                         </div>

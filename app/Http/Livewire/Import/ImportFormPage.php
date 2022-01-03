@@ -16,6 +16,8 @@ class ImportFormPage extends Component
     public $created_by;
     public $updated_by;
 
+    public $total = 0;
+
     public $inputs = [];
     public $i = 1;
 
@@ -43,6 +45,19 @@ class ImportFormPage extends Component
         ];
 
         array_push($this->checkProduct,$product->id);
+    }
+
+    public function sumRow($index){
+        $this->inputs[$index]['ipi_total'] = $this->inputs[$index]['ipi_qty'] * $this->inputs[$index]['ipi_price'];
+        $this->sumTotal();
+    }
+
+    public function sumTotal()
+    {
+        $this->total = 0;
+        foreach($this->inputs as $value){
+            $this->total += $value['ipi_total'];
+        }
     }
 
     public function render()
