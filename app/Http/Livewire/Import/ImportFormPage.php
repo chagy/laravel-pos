@@ -45,6 +45,7 @@ class ImportFormPage extends Component
         ];
 
         array_push($this->checkProduct,$product->id);
+        $this->sumTotal();
     }
 
     public function sumRow($index){
@@ -58,6 +59,17 @@ class ImportFormPage extends Component
         foreach($this->inputs as $value){
             $this->total += $value['ipi_total'];
         }
+    }
+
+    public function deleteRow($index){
+        unset($this->inputs[$index]);
+        unset($this->checkProduct[$index]);
+
+        $this->sumTotal();
+
+        array_values($this->inputs);
+        array_values($this->checkProduct);
+
     }
 
     public function render()

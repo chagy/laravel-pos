@@ -130,7 +130,8 @@
                                             <td class="text-center">
                                                 <button 
                                                     type="button" 
-                                                    class="btn btn-danger">
+                                                    class="btn btn-danger" 
+                                                    wire:click.prevent="deleteRow({{ $key }})">
                                                     <i class="fas fa-times"></i>
                                                 </button>
                                             </td>
