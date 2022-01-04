@@ -44,9 +44,9 @@
                             <td>{{ $item->impo_total }}</td>
                             <td>{{ $item->impo_qty }}</td>
                             <td class="text-center">
-                                @if ($item->impo_status == 2)
+                                @if ($item->impo_process == 2)
                                     <span class="badge badge-warning">รอตรวจสอบ</span>
-                                @elseif ($item->impo_status == 1)
+                                @elseif ($item->impo_process == 1)
                                     <span class="badge badge-success">เสร็จกระบวนการ</span>
                                 @else
                                     <span class="badge badge-danger">ยกเลิก</span>

@@ -2,9 +2,12 @@
 
 namespace App\Http\Livewire\Import;
 
+use App\Models\Import;
 use App\Models\Product;
 use Livewire\Component;
 use App\Models\Supplier;
+use App\Models\ImportProductItem;
+use Illuminate\Support\Facades\DB;
 
 class ImportFormPage extends Component
 {
@@ -26,6 +29,69 @@ class ImportFormPage extends Component
     protected $listeners = [
         'selectedProduct' => 'selectedProduct'
     ];
+
+    protected $rules = [
+        'supplier_id' => 'required',
+        'impo_process' => 'required'
+    ];
+
+    protected $messages = [
+        'supplier_id.required' => 'กรุณาเลือกผู้ผลิต',
+        'impo_process.required' => 'กรุณาเลือกสถานะ'
+    ];
+
+    public function save()
+    {
+        $this->validate($this->rules,$this->messages);
+
+        try {
+            DB::beginTransaction();
+            $import = Import::updateOrCreate([
+                'id' => $this->idKey
+            ],[
+                'supplier_id' => $this->supplier_id,
+                'impo_total' => 0,
+                'impo_process' => $this->impo_process,
+                'impo_qty' => 0,
+                'created_by' => 1,
+                'updated_by' => 1
+            ]);
+
+            $total = 0;
+            $qty = 0;
+            foreach($this->inputs as $value){
+                $item = ImportProductItem::create([
+                    'import_id' => $import->id,
+                    'product_id' => $value['product_id'],
+                    'ipi_name' => $value['ipi_name'],
+                    'ipi_qty' => $value['ipi_qty'],
+                    'ipi_unit' => $value['ipi_unit'],
+                    'ipi_price' => $value['ipi_price'],
+                    'ipi_total' => $value['ipi_total'],
+                ]);
+
+                $total += $value['ipi_total'];
+                $qty += $value['ipi_qty'];
+            }
+
+            $import->impo_total = $total;
+            $import->impo_qty = $qty;
+            $import->save();
+
+            DB::commit();
+
+            $this->dispatchBrowserEvent('swal',[
+                'title' => 'บันทึกรับสินค้าเรียบร้อย',
+                'timer' => 3000,
+                'icon' => 'success',
+                'url' => route('import.list')
+            ]);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $e;
+        }
+        
+    }
 
     public function selectedProduct($id)
     {
