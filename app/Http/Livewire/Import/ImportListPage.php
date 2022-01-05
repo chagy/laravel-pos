@@ -14,7 +14,7 @@ class ImportListPage extends Component
 
     public function render()
     {
-        $imports = Import::join('suppliers','imports.supplier_id','=','suppliers.id');
+        $imports = Import::select("imports.*")->join('suppliers','imports.supplier_id','=','suppliers.id');
 
         if($this->searchTerm)
         {

@@ -107,4 +107,5 @@ Route::group([
 ],function(){
     Route::get('/',ImportListPage::class)->name('list');
     Route::get('/create',ImportFormPage::class)->name('create');
+    Route::get('/update/{id}',ImportFormPage::class)->name('update');
 });

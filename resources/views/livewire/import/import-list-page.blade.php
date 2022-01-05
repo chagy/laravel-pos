@@ -54,7 +54,7 @@
                             </td>
                             <td>
                                 <a 
-                                  href="{!! route('product.update',$item->id) !!}"
+                                  href="{!! route('import.update',$item->id) !!}"
                                     class="btn btn-sm btn-warning" >
                                     <i class="fas fa-edit"></i>
                                 </a>

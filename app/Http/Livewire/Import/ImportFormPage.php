@@ -59,6 +59,8 @@ class ImportFormPage extends Component
 
             $total = 0;
             $qty = 0;
+
+            DB::table('import_product_items')->where('import_id',$import->id)->delete();
             foreach($this->inputs as $value){
                 $item = ImportProductItem::create([
                     'import_id' => $import->id,
@@ -136,6 +138,31 @@ class ImportFormPage extends Component
         array_values($this->inputs);
         array_values($this->checkProduct);
 
+    }
+
+    public function mount($id = 0){
+        if($id){
+            $import = Import::findOrFail($id);
+            $this->idKey = $import->id;
+            $this->supplier_id = $import->supplier_id;
+            $this->impo_total = $import->impo_total;
+            $this->impo_process = $import->impo_process;
+            $this->impo_qty = $import->impo_qty;
+            $this->created_by = $import->created_by;
+            $this->updated_by = $import->updated_by;
+            $this->total = $import->impo_total;
+
+            foreach ($import->items as $key => $value) {
+                $this->inputs[] = [
+                    'product_id' => $value->product_id,
+                    'ipi_name' => $value->ipi_name,
+                    'ipi_qty' => $value->ipi_qty,
+                    'ipi_unit' => $value->ipi_unit,
+                    'ipi_price' => $value->ipi_price,
+                    'ipi_total' => $value->ipi_total
+                ];
+            }
+        }
     }
 
     public function render()
