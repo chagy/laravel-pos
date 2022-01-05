@@ -33,7 +33,7 @@
                         <th>ยอดรวม</th>
                         <th>จำนวน</th>
                         <th>สถานะ</th>
-                        <th style="width: 40px">Action</th>
+                        <th style="width: 100px">Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -53,6 +53,14 @@
                                 @endif
                             </td>
                             <td>
+                              @if ($item->impo_process == 2)
+                                <button 
+                                  type="button"
+                                  wire:click.prevent="saveQty({{$item->id}})"
+                                    class="btn btn-sm btn-info" >
+                                    <i class="fas fa-check"></i>
+                                </button>
+                              @endif
                                 <a 
                                   href="{!! route('import.update',$item->id) !!}"
                                     class="btn btn-sm btn-warning" >
@@ -64,11 +72,17 @@
                     </tbody>
                   </table>
                 </div>
+                <div wire:loading wire:target="saveQty"  wire:loading.class="overlay" wire:loading.flex>
+                  <div class="d-flex justify-content-center align-items-center">
+                      <i class="fas fa-2x fa-sync fa-spin"></i>
+                  </div>
+                </div>
                 <!-- /.card-body -->
                 <div class="card-footer clearfix">
                   {!! $imports->links() !!}
                 </div>
             </div>
+            
         </div>
     </div>
 </div>
