@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Import;
 use Excel;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use App\Imports\ProductImport;
 
 class ImportExcelPage extends Component
 {
