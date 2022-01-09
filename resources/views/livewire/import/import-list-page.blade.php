@@ -17,8 +17,13 @@
                         <a 
                           href="{!! route('import.create') !!}"
                           class="btn btn-primary">
-                            <i class="fas fa-plus"></i> เพิ่มข้อมูล
-                          </a>
+                          <i class="fas fa-plus"></i> เพิ่มข้อมูล
+                        </a>
+                        <a 
+                          href="{!! route('import.excel') !!}"
+                          class="btn bg-teal">
+                          <i class="fas fa-file-excel"></i> Excel
+                        </a>
                       </div>
                     </div>
                   </div>

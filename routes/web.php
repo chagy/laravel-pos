@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Import\ImportFormPage;
 use App\Http\Livewire\Import\ImportListPage;
+use App\Http\Livewire\Import\ImportExcelPage;
 use App\Http\Livewire\Product\ProductFormPage;
 use App\Http\Livewire\Product\ProductListPage;
 use App\Http\Livewire\Category\CategoryListPage;
@@ -108,4 +109,5 @@ Route::group([
     Route::get('/',ImportListPage::class)->name('list');
     Route::get('/create',ImportFormPage::class)->name('create');
     Route::get('/update/{id}',ImportFormPage::class)->name('update');
+    Route::get('/excel',ImportExcelPage::class)->name('excel');
 });
