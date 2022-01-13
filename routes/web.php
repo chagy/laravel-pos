@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Pos\PosPage;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Import\ImportFormPage;
 use App\Http\Livewire\Import\ImportListPage;
@@ -110,4 +111,11 @@ Route::group([
     Route::get('/create',ImportFormPage::class)->name('create');
     Route::get('/update/{id}',ImportFormPage::class)->name('update');
     Route::get('/excel',ImportExcelPage::class)->name('excel');
+});
+
+Route::group([
+    'prefix' => 'pos',
+    'as' => 'pos.'
+],function(){
+    Route::get('/',PosPage::class)->name('index');
 });

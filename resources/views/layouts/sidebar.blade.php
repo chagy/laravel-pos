@@ -21,7 +21,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-header">เมนูหลัก</li>
             <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{!! route('pos.index') !!}" class="nav-link {{ \Request::routeIs('pos.index') ? 'active' : '' }}">
                     <i class="nav-icon fas fa-cart-plus"></i>
                     <p>ขาย</p>
                 </a>
