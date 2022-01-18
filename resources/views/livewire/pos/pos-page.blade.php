@@ -34,7 +34,25 @@
             </div>
             
             <div class="row mt-2 overflow-auto" style="min-height:60%;">
-                สินค้า
+                @for ($i = 0; $i < 20; $i++)
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                        <div class="card">
+                            <img src="{!! asset('images/products/20211231133545at2tnE98fbbYkHgC.png') !!}" alt="Product" class="card-img-top">
+                            <div class="card-body">
+                                <p class="card-text">
+                                    Product {{ $i }}
+                                </p>
+                                <div class="row align-item-center">
+                                    <div class="col-6">
+                                        <span style="font-weight: bold;font-size: 1.25rem;">100</span>
+                                    </div>
+                                    <div class="col-6"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endfor
+                
             </div>
         </div>
         <div class="col-4">
