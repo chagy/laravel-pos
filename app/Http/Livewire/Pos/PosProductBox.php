@@ -18,12 +18,15 @@ class PosProductBox extends Component
             'price' => $this->product->prod_price,
             'quantity' => 1,
             'attributes' => [
+                'dateOrder' => date('YmdHis'),
                 'psod_item_unit' => $this->product->prod_unit,
                 'psod_item_price' => $this->product->prod_price,
                 'psod_item_discount' => 0,
                 'psod_item_discount_total' => 0,
             ]
         ]);
+
+        // Cart::clear();
 
         $this->emit('posCartRefresh');
     }

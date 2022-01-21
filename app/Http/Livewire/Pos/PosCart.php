@@ -23,7 +23,13 @@ class PosCart extends Component
 
     public function mount()
     {
-        $this->items = Cart::getContent();
+        $cart = Cart::getContent()->sortByDesc(function($product,$key){
+            return $product->attributes->dateOrder;
+        });
+
+        $this->items = $cart->values()->toArray();
+
+        $this->total = Cart::getTotal();
     }
     
     public function render()

@@ -69,7 +69,7 @@
             @forelse ($items as $item)
             <tr>
                 <td class="align-middle">
-                    {{$item['name']}}
+                    {{ count($items)-$loop->index }}. {{$item['name']}}
                 </td>
                 <td class="text-right">
                     <span>
