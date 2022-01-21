@@ -16,6 +16,12 @@ class PosCart extends Component
         'posCartRefresh' => 'cartUpdate'
     ];
 
+    public function deleteProduct($id)
+    {
+        Cart::remove($id);
+        $this->mount();
+    }
+
     public function cartUpdate()
     {
         $this->mount();

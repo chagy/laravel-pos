@@ -84,7 +84,8 @@
                     <div class="btn-group">
                         <button 
                             type="button" 
-                            class="btn btn-danger btn-sm">
+                            class="btn btn-danger btn-sm" 
+                            wire:click="deleteProduct({{ $item['id'] }})">
                             <i class="fas fa-trash"></i>
                         </button>
                         <button 
