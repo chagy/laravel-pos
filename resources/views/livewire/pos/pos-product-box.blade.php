@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" wire:click="addCart">
     @if ($product->prod_picture)
     <img 
     src="{!! asset('images/products/'.$product->prod_picture) !!}" 

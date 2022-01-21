@@ -69,15 +69,15 @@
             @forelse ($items as $item)
             <tr>
                 <td class="align-middle">
-                    1. ชื่อสินค้า
+                    {{$item['name']}}
                 </td>
                 <td class="text-right">
                     <span>
-                        100 x 10
+                        {{number_format($item['price'],0)}} x {{number_format($item['quantity'],0)}}
                     </span>
                     <br/>
                     <span>
-                        1000
+                        {{number_format($item['price']*$item['quantity'],0)}}
                     </span>
                 </td>
                 <td class="align-middle">
