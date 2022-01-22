@@ -73,7 +73,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   })
 
   window.livewire.on("modalHide",() => {
-    $("#modal").modal("hide");
+    $(".modal").modal("hide");
   })
 </script>
 </body>

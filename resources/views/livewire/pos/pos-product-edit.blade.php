@@ -43,11 +43,11 @@
                                 <div class="form-group">
                                     <input
                                         type="text"
-                                        class="form-control @error('discount') is-invalid @enderror" 
+                                        class="form-control @error('discountItem') is-invalid @enderror" 
                                         placeholder="ส่วนลด" 
-                                        wire:model="discount"/>
-                                    @error('discount')
-                                    <div id="discount_validation" class="invalid-feedback">
+                                        wire:model="discountItem"/>
+                                    @error('discountItem')
+                                    <div id="discountItem_validation" class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                     @enderror
