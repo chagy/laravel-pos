@@ -63,7 +63,7 @@
         class="btn btn-lg btn-block btn-primary mb-3">
         ชำระเงิน
     </button>
-
+    @livewire('pos.pos-product-edit')
     <div class="table-responsive p-0" style="height: 500px;">
         <table class="table">
             @forelse ($items as $item)
@@ -90,7 +90,10 @@
                         </button>
                         <button 
                             type="button" 
-                            class="btn btn-success btn-sm">
+                            class="btn btn-success btn-sm" 
+                            data-toggle="modal"  
+                            data-target="#modal-product-edit" 
+                            wire:click="$emit('posProductEdit',{{ $item['id'] }})">
                             <i class="fas fa-edit"></i>
                         </button>
                     </div>
