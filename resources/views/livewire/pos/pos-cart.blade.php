@@ -6,7 +6,7 @@
             </span>
         </div>
         <input 
-            type="text" 
+            type="number" 
             class="form-control" 
             placeholder="0.00" 
             style="text-align: right;" 

@@ -16,6 +16,12 @@ class PosCart extends Component
         'posCartRefresh' => 'cartUpdate'
     ];
 
+    public function updatedDiscount()
+    {
+        $this->total = Cart::getTotal();
+        $this->total = $this->total - $this->discount;
+    }
+
     public function deleteProduct($id)
     {
         Cart::remove($id);
