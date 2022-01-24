@@ -8,6 +8,7 @@ use Cart;
 class PosCart extends Component
 {
     public $discount=0;
+    public $discountItem = 0;
     public $total = 0;
     public $customerData;
     public $items = [];
@@ -19,7 +20,7 @@ class PosCart extends Component
     public function updatedDiscount()
     {
         $this->total = Cart::getTotal();
-        $this->total = $this->total - $this->discount;
+        $this->total = $this->total - $this->discount - $this->discountItem;
     }
 
     public function deleteProduct($id)
@@ -41,11 +42,17 @@ class PosCart extends Component
 
         $this->items = $cart->values()->toArray();
 
-        $this->total = Cart::getTotal();
+        $this->discountItem = 0;
+        foreach ($cart as $key => $value) {
+            $this->discountItem += $value->attributes->psod_item_discount_total;
+        }
+
+        $this->total = Cart::getTotal() - $this->discount - $this->discountItem;
     }
     
     public function render()
     {
+
         return view('livewire.pos.pos-cart');
     }
 }

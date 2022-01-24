@@ -72,12 +72,15 @@
                     {{ count($items)-$loop->index }}. {{$item['name']}}
                 </td>
                 <td class="text-right">
+                    @if ($item['attributes']['psod_item_discount'] > 0)
+                        <span style="text-decoration: line-through;color: red;">{{ number_format($item['price'],0) }}</span>
+                    @endif
                     <span>
-                        {{number_format($item['price'],0)}} x {{number_format($item['quantity'],0)}}
+                        {{number_format($item['price']-$item['attributes']['psod_item_discount'],0)}} x {{number_format($item['quantity'],0)}}
                     </span>
                     <br/>
                     <span>
-                        {{number_format($item['price']*$item['quantity'],0)}}
+                        {{number_format(($item['price']-$item['attributes']['psod_item_discount'])*$item['quantity'],0)}}
                     </span>
                 </td>
                 <td class="align-middle">
