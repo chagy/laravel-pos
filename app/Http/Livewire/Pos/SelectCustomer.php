@@ -14,7 +14,7 @@ class SelectCustomer extends Component
 
     public function render()
     {
-        $customers = User::where('type',2);
+        $customers = User::where('type',2)->where('username','!=','guest');
 
         if($this->searchTerm){
             $customers = $customers

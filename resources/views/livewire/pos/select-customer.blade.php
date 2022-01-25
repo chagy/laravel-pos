@@ -47,12 +47,12 @@
                                     </td>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->phone }}</td>
-                                    <td>
-                                        <a
-                                          href="{!! route('customer.update',$item->id) !!}"
-                                            class="btn btn-sm btn-warning" >
-                                            <i class="fas fa-edit"></i>
-                                        </a>
+                                    <td class="text-center align-middle">
+                                        <button
+                                            wire:click="$emit('posSelectCustomer',{{ $item->id}})"
+                                            class="btn btn-sm btn-info" >
+                                            <i class="fas fa-check"></i>
+                                        </button>
                                     </td>
                                 </tr> 
                                 @endforeach
