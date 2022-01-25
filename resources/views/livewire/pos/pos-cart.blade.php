@@ -36,6 +36,7 @@
             </div>
         </div>
     </div>
+    @livewire('pos.select-customer')
     <div class="input-group input-group-lg mb-3">
         <div class="input-group-prepend">
             <span class="input-group-text">
@@ -47,12 +48,13 @@
             class="form-control" 
             readonly 
             style="color: blue;font-weight: bold;font-size: 1.5rem;" 
-            value="Guest" 
             wire:model="customerData">
         <div class="input-group-append">
             <button 
                 type="button" 
-                class="input-group-text">
+                class="input-group-text" 
+                data-toggle="modal"  
+                data-target="#modal-customer">
                 <i class="fas fa-user"></i>
             </button>
         </div>
