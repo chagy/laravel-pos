@@ -3,6 +3,9 @@
 namespace App\Http\Livewire\Pos;
 
 use Livewire\Component;
+use App\Models\PosOrder;
+use Cart;
+use Illuminate\Support\Facades\DB;
 
 class PosCalculator extends Component
 {
@@ -58,6 +61,66 @@ class PosCalculator extends Component
 
         $this->change = $this->money - $this->productTotal;
         $this->changeText = number_format($this->money - $this->productTotal,2);
+    }
+
+    public function save()
+    {
+        DB::beginTransaction();
+        try {
+            $posOrder = PosOrder::create([
+                'employee_id' => 1,
+                'customer_id' => $this->customerId,
+                'psod_qty' => 0,
+                'psod_total' => $this->productTotal+$this->discount,
+                'psod_discount_extra' => $this->discount,
+                'psod_discount_item' => 0,
+                'psod_vat' => 0,
+                'psod_vat_amount' => 0,
+                'psod_net_total' => $this->productTotal,
+                'psod_money' => $this->money,
+                'psod_change' => $this->change,
+                'psod_note' => $this->change,
+                'psod_status' => 1,
+            ]);
+
+            $items = Cart::getContent();
+            $qty = 0;
+            $discount = 0;
+            foreach ($items as $key => $value) {
+                $posOrder->items()->create([
+                    'product_id' => $value->id,
+                    'psod_item_name' => $value->name,
+                    'psod_item_unit' => $value->attributes->psod_item_unit,
+                    'psod_item_price' => $value->price,
+                    'psod_item_qty'=> $value->quantity,
+                    'psod_item_discount' => $value->attributes->psod_item_discount,
+                    'psod_item_discount_total' => $value->attributes->psod_item_discount_total,
+                ]);
+                $qty += $value->quantity;
+                $discount += $value->attributes->psod_item_discount_total;
+            }
+
+            $posOrder->psod_qty = $qty;
+            $posOrder->psod_discount_item = $discount;
+            $posOrder->save();
+
+            Cart::clear();
+
+            $this->emit("modalHide");
+            $this->emit("posCartRefresh");
+
+            $this->dispatchBrowserEvent('swal',[
+                'title' => 'บันทึกข้อมูลการขายเรียบร้อย',
+                'timer' => 3000,
+                'icon' => 'success',
+            ]);
+
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            dd($e);
+        }
+        
     }
 
     public function render()

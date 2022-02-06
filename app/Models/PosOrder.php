@@ -34,4 +34,9 @@ class PosOrder extends Model
     {
         return $this->belongsTo(Customer::class,'customer_id');
     }
+
+    public function items()
+    {
+        return $this->hasMany(PosOrderItem::class,'pos_order_id');
+    }
 }
