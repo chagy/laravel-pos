@@ -32,11 +32,16 @@
                                     <label for="sett_phone">เบอร์โทร</label>
                                     <input 
                                         type="text" 
-                                        class="form-control" 
+                                        class="form-control @error('sett_phone') is-invalid @enderror" 
                                         name="sett_phone"
                                         id="sett_phone" 
                                         placeholder="เบอร์โทร" 
                                         wire:model="sett_phone"/>
+                                    @error('sett_phone')
+                                    <div id="sett_phone_validation" class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-12 col-md-6">
