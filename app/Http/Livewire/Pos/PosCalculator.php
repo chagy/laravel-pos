@@ -123,6 +123,15 @@ class PosCalculator extends Component
         
     }
 
+    public function clearMoney()
+    {
+        $this->money = 0;
+        $this->moneyText = 0;
+
+        $this->change = 0;
+        $this->changeText = 0;
+    }
+
     public function render()
     {
         return view('livewire.pos.pos-calculator');
