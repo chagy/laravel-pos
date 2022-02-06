@@ -13,7 +13,7 @@
                         <tr>
                             <td colspan="4" style="padding: 0;background: gray;">
                                 <h1 class="text-right" style="margin: 0;color: yellow;">
-                                    {{ $money }}
+                                    {{ $moneyText }}
                                 </h1>
                             </td>
                         </tr>
@@ -172,14 +172,14 @@
                             <td class="text-center bg-maroon">ยอดสินค้า</td>
                             <td colspan="2" style="padding: 0;background: gray;">
                                 <h1 class="text-right" style="margin: 0;color: yellow;">
-                                    {{ $productTotal }}
+                                    {{ $productTotalText }}
                                 </h1>
                             </td>
                             <td rowspan="3" style="padding: 0;">
                                 <button 
                                     type="button" 
                                     class="btn btn-block btn-flat btn-primary" 
-                                    style="font-size: 2rem;padding: 25px;" 
+                                    style="font-size: 2rem;padding: 50px;" 
                                     wire:click="save">
                                     ตกลง
                                 </button>
@@ -189,7 +189,7 @@
                             <td class="text-center bg-maroon">ส่วนลด</td>
                             <td colspan="2" style="padding: 0;background: gray;">
                                 <h1 class="text-right" style="margin: 0;color: yellow;">
-                                    {{ $discount }}
+                                    {{ $discountText }}
                                 </h1>
                             </td>
                         </tr>
@@ -197,7 +197,7 @@
                             <td class="text-center bg-maroon">เงินทอน</td>
                             <td colspan="2" style="padding: 0;background: gray;">
                                 <h1 class="text-right" style="margin: 0;color: yellow;">
-                                    0
+                                    {{ $changeText }}
                                 </h1>
                             </td>
                         </tr>
