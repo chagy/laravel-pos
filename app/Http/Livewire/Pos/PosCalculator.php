@@ -31,6 +31,15 @@ class PosCalculator extends Component
         $this->customerId = $customer;
     }
 
+    public function handleTotal()
+    {
+        $this->money = $this->productTotal;
+        $this->moneyText= number_format($this->money,2);
+
+        $this->change = $this->money - $this->productTotal;
+        $this->changeText = number_format($this->money - $this->productTotal,2);
+    }
+
     public function handleClick($value,$type="number")
     {
         $money = $this->money;
