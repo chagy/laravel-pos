@@ -114,6 +114,12 @@
                     <p>ผู้ผลิต</p>
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="{!! route('setting.index') !!}" class="nav-link {{ \Request::routeIs('setting.index') ? 'active' : '' }}">
+                    <i class="nav-icon fas fa-cogs text-warning"></i>
+                    <p>ตั้งค่า</p>
+                </a>
+            </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

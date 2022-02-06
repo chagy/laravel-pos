@@ -2,6 +2,7 @@
 
 use App\Http\Livewire\Pos\PosPage;
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\Setting\SettingPage;
 use App\Http\Livewire\Import\ImportFormPage;
 use App\Http\Livewire\Import\ImportListPage;
 use App\Http\Livewire\Import\ImportExcelPage;
@@ -118,4 +119,11 @@ Route::group([
     'as' => 'pos.'
 ],function(){
     Route::get('/',PosPage::class)->name('index');
+});
+
+Route::group([
+    'prefix' => 'setting',
+    'as' => 'setting.'
+],function(){
+    Route::get('/',SettingPage::class)->name('index');
 });
