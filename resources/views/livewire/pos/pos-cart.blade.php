@@ -64,7 +64,8 @@
         type="button" 
         class="btn btn-lg btn-block btn-primary mb-3" 
         data-toggle="modal"  
-        data-target="#modal-calculator">
+        data-target="#modal-calculator" 
+        wire:click="$emit('calculator',{{ $total }},{{ $discount }},{{ $customerId }})">
         ชำระเงิน
     </button>
     @livewire('pos.pos-product-edit')

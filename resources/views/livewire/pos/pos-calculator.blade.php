@@ -13,7 +13,7 @@
                         <tr>
                             <td colspan="4" style="padding: 0;background: gray;">
                                 <h1 class="text-right" style="margin: 0;color: yellow;">
-                                    1000
+                                    {{ $money }}
                                 </h1>
                             </td>
                         </tr>
@@ -172,10 +172,10 @@
                             <td class="text-center bg-maroon">ยอดสินค้า</td>
                             <td colspan="2" style="padding: 0;background: gray;">
                                 <h1 class="text-right" style="margin: 0;color: yellow;">
-                                    400
+                                    {{ $productTotal }}
                                 </h1>
                             </td>
-                            <td rowspan="2" style="padding: 0;">
+                            <td rowspan="3" style="padding: 0;">
                                 <button 
                                     type="button" 
                                     class="btn btn-block btn-flat btn-primary" 
@@ -183,6 +183,14 @@
                                     wire:click="save">
                                     ตกลง
                                 </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center bg-maroon">ส่วนลด</td>
+                            <td colspan="2" style="padding: 0;background: gray;">
+                                <h1 class="text-right" style="margin: 0;color: yellow;">
+                                    {{ $discount }}
+                                </h1>
                             </td>
                         </tr>
                         <tr>
