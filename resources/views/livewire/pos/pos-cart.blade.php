@@ -59,10 +59,12 @@
             </button>
         </div>
     </div>
-
+    @livewire('pos.pos-calculator')
     <button 
         type="button" 
-        class="btn btn-lg btn-block btn-primary mb-3">
+        class="btn btn-lg btn-block btn-primary mb-3" 
+        data-toggle="modal"  
+        data-target="#modal-calculator">
         ชำระเงิน
     </button>
     @livewire('pos.pos-product-edit')
