@@ -116,6 +116,8 @@ class PosCalculator extends Component
             ]);
 
             DB::commit();
+
+            // $this->emit('openPrintModal',$posOrder->id);
         } catch (\Exception $e) {
             DB::rollBack();
             dd($e);

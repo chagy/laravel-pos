@@ -49,4 +49,5 @@
             </div>
         </div>
     </div>
+    @livewire('pos.pos-print')
 </div>

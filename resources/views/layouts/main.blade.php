@@ -75,6 +75,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
   window.livewire.on("modalHide",() => {
     $(".modal").modal("hide");
   })
+
+  window.livewire.on('formPrintModal',function(e) => {
+    $("#form-print-modal").modal(e.detail.status);
+  });
 </script>
 </body>
 </html>
