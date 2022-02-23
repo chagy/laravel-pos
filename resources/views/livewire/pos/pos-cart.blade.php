@@ -69,6 +69,7 @@
         ชำระเงิน
     </button>
     @livewire('pos.pos-product-edit')
+    @livewire('pos.pos-print')
     <div class="table-responsive p-0" style="height: 500px;">
         <table class="table">
             @forelse ($items as $item)

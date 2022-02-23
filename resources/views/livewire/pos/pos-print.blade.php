@@ -12,7 +12,9 @@
                     <div class="row">
                         <div class="col-12 mb-2">
                             <a 
-                                href="" 
+                                @if(!empty($pos) && $pos->id > 0)
+                                href="{!! route('pos.print.slip',$pos->id) !!}" 
+                                @endif
                                 target="_blank" 
                                 class="btn btn-primary btn-block">
                                 <i class="fas fa-print"></i> พิมพ์ใบเสร็จ
@@ -20,7 +22,9 @@
                         </div>
                         <div class="col-12">
                             <a 
-                                href="" 
+                                @if(!empty($pos) && $pos->id > 0)
+                                href="{!! route('pos.print.a',$pos->id) !!}" 
+                                @endif
                                 target="_blank" 
                                 class="btn btn-info btn-block">
                                 <i class="fas fa-print"></i> พิมพ์ใบเสร็จ A4

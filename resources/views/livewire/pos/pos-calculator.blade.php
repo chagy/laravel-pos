@@ -217,5 +217,5 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
-    @livewire('pos.pos-print')
+    
 </div>

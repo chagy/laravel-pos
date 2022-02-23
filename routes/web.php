@@ -3,6 +3,7 @@
 use App\Http\Livewire\Pos\PosPage;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Setting\SettingPage;
+use App\Http\Controllers\PosPrintController;
 use App\Http\Livewire\Import\ImportFormPage;
 use App\Http\Livewire\Import\ImportListPage;
 use App\Http\Livewire\Import\ImportExcelPage;
@@ -126,4 +127,12 @@ Route::group([
     'as' => 'setting.'
 ],function(){
     Route::get('/',SettingPage::class)->name('index');
+});
+
+Route::group([
+    'prefix' => 'pos/print',
+    'as' => 'pos.print.'
+],function() {
+    Route::get('/slip/{id}',[PosPrintController::class,'printSlip'])->name('slip');
+    Route::get('/a4/{id}',[PosPrintController::class,'printa'])->name('a');
 });
