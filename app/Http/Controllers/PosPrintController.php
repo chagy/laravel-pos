@@ -27,6 +27,16 @@ class PosPrintController extends Controller
 
     public function printA($id)
     {
+        $setting = Setting::orderBy('id','asc')->first();
 
+        $posOrder = PosOrder::findOrFail($id);
+
+        $mpdf = Helper::mpdf('A4',16);
+        $mpdf->WriteHTML(view('pos-print.bill_a4',[
+            'setting' => $setting,
+            'posOrder' => $posOrder
+        ]));
+        $mpdf->Output('pos-order-'.date('d-m-Y').".pdf",'I');
+        exit;
     }
 }
