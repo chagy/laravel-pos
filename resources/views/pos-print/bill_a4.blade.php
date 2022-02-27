@@ -1,3 +1,6 @@
+<?php 
+use App\Helpers\Helper;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -81,6 +84,71 @@
             <td>{{ $posOrder->phone }}</td>
             <td class="border-left font-bold"></td>
             <td></td>
+        </tr>
+    </table>
+    <table width="100%" style="margin-top: 5px;">
+        <tr>
+            <td class="border font-bold" align="center" width="5%">ลำดับ</td>
+            <td class="border font-bold" align="center" width="35%">ชื่อสินค้า</td>
+            <td class="border font-bold" align="center" width="10%">จำนวน</td>
+            <td class="border font-bold" align="center">ราคา / หน่วย</td>
+            <td class="border font-bold" align="center">ส่วนลด</td>
+            <td class="border font-bold" align="center">จำนวน</td>
+        </tr>
+        @php
+            $sum = 0;
+            $tax_total = 0;
+            $net_total = 0;
+        @endphp
+        @foreach ($posOrder->items as $item)
+        <tr>
+            <td align="center"  class="border-left">{{ $loop->index+1 }}</td>
+            <td class="border-left">
+                {{ $item->psod_item_name }}
+            </td>
+            <td class="border-left" align="right">
+                {{ number_format($item->psod_item_qty,0) }}
+            </td>
+            <td class="border-left" align="right">
+                {{ number_format($item->psod_item_price,2) }}
+            </td>
+            <td class="border-left" align="right">
+                {{ number_format($item->psod_item_discount,2) }}
+            </td>
+            <td class="border-left border-right" align="right">
+                {{ number_format(($item->psod_item_qty*$item->psod_item_price) - $item->psod_item_discount_total,2) }}
+            </td>
+        </tr>
+        @php
+            $sum += ($item->psod_item_qty*$item->psod_item_price) - $item->psod_item_discount_total;
+        @endphp
+        @endforeach
+        @php
+            $tax_total = $sum * ( $setting->sett_vat/100);
+            $net_total = $sum - $tax_total;
+        @endphp
+        <tr class="border">
+            <td align="center" colspan="3" class="border-left font-bold">
+                {{ Helper::ThaiBahtConversion($sum) }}
+            </td>
+            <td colspan="2" class="border-left font-bold">รวมเงิน</td>
+            <td align="right" class="border-left">
+                {{ number_format($sum,2) }}
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" ></td>
+            <td colspan="2" class="border font-bold">หัก ณ ที่จ่าย {{ $setting->sett_vat }}%</td>
+            <td align="right" class="border">
+                {{ number_format($tax_total,2) }}
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" ></td>
+            <td colspan="2" class="border font-bold">ยอดเงินสุทธิ</td>
+            <td align="right" class="border">
+                {{ number_format($net_total,2) }}
+            </td>
         </tr>
     </table>
 </body>
