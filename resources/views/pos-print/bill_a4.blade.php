@@ -38,7 +38,8 @@ use App\Helpers\Helper;
             margin: 2%;
             margin-top: 3mm;
             margin-header: 0mm;
-            margin-footer: 0mm;
+            margin-footer: 5mm;
+            footer: html_MyCustomFooter;
         }
     </style>
 </head>
@@ -151,5 +152,53 @@ use App\Helpers\Helper;
             </td>
         </tr>
     </table>
+    <htmlpagefooter name="MyCustomFooter">
+        <table class="border" width="100%">
+            <tr>
+                <td class="font-bold" align="center" width="33.33%">
+                    ผู้รับบิล/Receiver
+                </td>
+                <td class="font-bold border-right border-left" align="center" width="33.33%">
+                    ผู้ตรวจสอบรายการ / Inspector By
+                </td>
+                <td class="font-bold" align="center" width="33.33%">
+                    ผู้มีอำนาจลงนาม / Authorized Signature
+                </td>
+            </tr>
+            <tr>
+                <td class="font-bold" align="center" width="33.33%">
+                    ได้รับรายการตามรายการเรียบร้อยแล้ว
+                </td>
+                <td class="font-bold border-right border-left" align="center" width="33.33%">
+                    
+                </td>
+                <td class="font-bold" align="center" width="33.33%">
+                    
+                </td>
+            </tr>
+            <tr>
+                <td class="font-bold" align="center" width="33.33%">
+                    ...................................................
+                </td>
+                <td class="font-bold border-right border-left" align="center" width="33.33%">
+                    ...................................................
+                </td>
+                <td class="font-bold" align="center" width="33.33%">
+                    ...................................................
+                </td>
+            </tr>
+            <tr>
+                <td class="font-bold" align="center" width="33.33%">
+                    วันที่/Date...................................................
+                </td>
+                <td class="font-bold border-right border-left" align="center" width="33.33%">
+                    วันที่/Date...................................................
+                </td>
+                <td class="font-bold" align="center" width="33.33%">
+                    วันที่/Date...................................................
+                </td>
+            </tr>
+        </table>
+    </htmlpagefooter>
 </body>
 </html>
