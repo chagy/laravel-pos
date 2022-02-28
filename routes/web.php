@@ -18,6 +18,7 @@ use App\Http\Livewire\Employee\EmployeeListPage;
 use App\Http\Livewire\Province\ProvinceListPage;
 use App\Http\Livewire\Supplier\SupplierFormPage;
 use App\Http\Livewire\Supplier\SupplierListPage;
+use App\Http\Livewire\Product\ProductDiscountPage;
 use App\Http\Livewire\SubDistrict\SubDistrictListPage;
 
 /*
@@ -135,4 +136,11 @@ Route::group([
 ],function() {
     Route::get('/slip/{id}',[PosPrintController::class,'printSlip'])->name('slip');
     Route::get('/a4/{id}',[PosPrintController::class,'printa'])->name('a');
+});
+
+Route::group([
+    'prefix' => 'discount',
+    'as' => 'discount.'
+],function(){
+    Route::get('/',ProductDiscountPage::class)->name('list');
 });

@@ -72,7 +72,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{!! route('discount.list') !!}" class="nav-link {{ \Request::routeIs('discount.list') ? 'active' : '' }}">
                     <i class="nav-icon fas fa-gift"></i>
                     <p>ส่วนลด</p>
                 </a>
