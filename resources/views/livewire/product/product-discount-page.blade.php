@@ -43,13 +43,29 @@
                             <td>{{ $item->category->cate_name }}</td>
                             <td>{{ $item->prod_price }}</td>
                             <td>
+                              @if($item->id != $idKey)
                                 {{ $item->prod_discount }}
+                              @else 
+                                <input 
+                                  type="text" 
+                                  class="form-control" 
+                                  wire:model="prod_discount" />
+                              @endif
                             </td>
                             <td>
-                                <button
+                              @if($item->id != $idKey)
+                                <button 
+                                  wire:click="editDiscount({{ $item->id }})"
                                     class="btn btn-sm btn-warning" >
                                     <i class="fas fa-edit"></i>
                                 </button>
+                              @else
+                                <button 
+                                  wire:click="saveDiscount"
+                                    class="btn btn-sm btn-primary" >
+                                    <i class="fas fa-save"></i>
+                                </button>
+                              @endif
                             </td>
                         </tr> 
                         @endforeach
