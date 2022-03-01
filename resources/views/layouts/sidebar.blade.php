@@ -66,7 +66,7 @@
             </li>
             <li class="nav-header">โปรโมชั่น</li>
             <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{!! route('promotion.list') !!}" class="nav-link {{ \Request::routeIs('promotion.list') ? 'active' : '' }}">
                     <i class="nav-icon fas fa-percent"></i>
                     <p>โปรโมชั่น</p>
                 </a>
