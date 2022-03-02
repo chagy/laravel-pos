@@ -86,6 +86,20 @@
                             id="prom_desc" 
                             wire:model="prom_desc"></textarea>
                     </div>
+
+                    @livewire('promotion.promotion-select-product')
+
+                    <div class="row">
+                        <div class="col-12">
+                            <button 
+                                type="button" 
+                                data-toggle="modal"  
+                                data-target="#modal" 
+                                class="btn btn-success btn-block">
+                                เลือกสินค้า
+                            </button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
