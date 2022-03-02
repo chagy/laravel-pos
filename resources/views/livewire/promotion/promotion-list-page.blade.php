@@ -15,7 +15,7 @@
   
                       <div class="input-group-append">
                         <a 
-                          href="#"
+                          href="{!! route('promotion.create') !!}"
                           class="btn btn-primary">
                             <i class="fas fa-plus"></i> เพิ่มข้อมูล
                           </a>
@@ -50,7 +50,7 @@
                             </td>
                             <td>
                                 <a 
-                                  href="#"
+                                  href="{!! route('promotion.edit',$item->id) !!}"
                                     class="btn btn-sm btn-warning" >
                                     <i class="fas fa-edit"></i>
                                 </a>

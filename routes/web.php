@@ -19,6 +19,7 @@ use App\Http\Livewire\Province\ProvinceListPage;
 use App\Http\Livewire\Supplier\SupplierFormPage;
 use App\Http\Livewire\Supplier\SupplierListPage;
 use App\Http\Livewire\Product\ProductDiscountPage;
+use App\Http\Livewire\Promotion\PromotionFormPage;
 use App\Http\Livewire\Promotion\PromotionListPage;
 use App\Http\Livewire\SubDistrict\SubDistrictListPage;
 
@@ -151,4 +152,6 @@ Route::group([
     'as' => 'promotion.'
 ],function(){
     Route::get('/',PromotionListPage::class)->name('list');
+    Route::get('/create',PromotionFormPage::class)->name('create');
+    Route::get('/edit/{id}',PromotionFormPage::class)->name('edit');
 });
