@@ -42,11 +42,12 @@
                                 <td>{{ $item->prod_name }}</td>
                                 <td>{{ $item->prod_price }}</td>
                                 <td>
-                                    <a 
-                                      href="#"
-                                        class="btn btn-sm btn-warning" >
-                                        <i class="fas fa-edit"></i>
-                                    </a>
+                                    <button 
+                                        type="button" 
+                                        wire:click="$emit('selectProduct',{{ $item->id }})"
+                                        class="btn btn-sm btn-info" >
+                                        <i class="fas fa-check"></i>
+                                    </button>
                                 </td>
                             </tr> 
                             @endforeach

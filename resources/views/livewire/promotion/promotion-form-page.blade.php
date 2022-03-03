@@ -100,6 +100,39 @@
                             </button>
                         </div>
                     </div>
+                    @if($products)
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>ชื่อสินค้า</th>
+                                        <th>ราคา</th>
+                                        <th>#</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($products as $key => $prod)
+                                    <tr>
+                                        <td>{{ $prod['product_id'] }}</td>
+                                        <td>{{ $prod['product_name'] }}</td>
+                                        <td class="text-right">{{ $prod['product_price'] }}</td>
+                                        <td class="text-center">
+                                            <button 
+                                                type="button" 
+                                                wire:click="deleteProductRow({{ $key }})"
+                                                class="btn btn-danger">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    @endif
                 </form>
             </div>
         </div>
