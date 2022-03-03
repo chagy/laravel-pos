@@ -132,6 +132,59 @@
                             </table>
                         </div>
                     </div>
+
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <button 
+                                type="button" 
+                                class="btn btn-info btn-block" 
+                                wire:click="addCondition">
+                                <i class="fas fa-plus"></i> เงื่อนไข
+                            </button>
+                        </div>
+                        <div class="col-12">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>ซื้อขั้นต่ำ (ชิ้น)</th>
+                                        <th>ลด (฿)</th>
+                                        <th>#</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($conditions as $key => $con)
+                                     <tr>
+                                         <td>
+                                             <input 
+                                                type="number" 
+                                                name="product_qty[]" 
+                                                id="product_qty.{{$key}}"
+                                                class="form-control" 
+                                                wire:model="product_qty.{{$key}}" />
+                                         </td>
+                                         <td>
+                                            <input 
+                                                type="text" 
+                                                name="product_discount[]" 
+                                                id="product_discount.{{$key}}"
+                                                class="form-control" 
+                                                wire:model="product_discount.{{$key}}" />
+                                         </td>
+                                         <td class="text-center">
+                                             <button 
+                                                type="button" 
+                                                wire:click="deleteConditionRow({{ $key }})" 
+                                                class="btn btn-link text-danger">
+                                                <i class="fas fa-trash"></i>
+                                             </button>
+                                         </td>
+                                     </tr>   
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
                     @endif
                 </form>
             </div>

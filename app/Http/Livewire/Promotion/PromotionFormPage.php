@@ -14,11 +14,31 @@ class PromotionFormPage extends Component
     public $prom_status=1;
     public $prom_desc;
 
+    public $product_qty = [];
+    public $product_discount = [];
+
     public $products = [];
+    public $conditions = [];
 
     protected $listeners = [
         'selectProduct' => 'selectProduct'
     ];
+
+    public function deleteConditionRow($index)
+    {
+        unset($this->conditions[$index]);
+    }
+
+    public function addCondition()
+    {
+        $this->conditions[] = [
+            'product_qty' => 1,
+            'product_discount' => 0
+        ];
+
+        $this->product_qty[] = 1;
+        $this->product_discount = 0;
+    }
 
     public function deleteProductRow($index)
     {
