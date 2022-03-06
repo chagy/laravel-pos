@@ -159,16 +159,26 @@
                                                 type="number" 
                                                 name="product_qty[]" 
                                                 id="product_qty.{{$key}}"
-                                                class="form-control" 
+                                                class="form-control @error('product_qty.'.$key) is-invalid @enderror" 
                                                 wire:model="product_qty.{{$key}}" />
+                                                @error('product_qty.'.$key)
+                                                <span id="product_qty.{{$key}}_error" class="error invalid-feedback">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
                                          </td>
                                          <td>
                                             <input 
                                                 type="text" 
                                                 name="product_discount[]" 
                                                 id="product_discount.{{$key}}"
-                                                class="form-control" 
+                                                class="form-control @error('product_discount.'.$key) is-invalid @enderror" 
                                                 wire:model="product_discount.{{$key}}" />
+                                                @error('product_discount.'.$key)
+                                                <span id="product_discount.{{$key}}_error" class="error invalid-feedback">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
                                          </td>
                                          <td class="text-center">
                                              <button 
@@ -186,7 +196,18 @@
                     </div>
 
                     @endif
+
+                    <div class="form-group mt-2">
+                        <button class="btn btn-primary btn-block">
+                            Save
+                        </button>
+                    </div>
                 </form>
+            </div>
+            <div wire:loading wire:target="savePromotion"  wire:loading.class="overlay" wire:loading.flex>
+                <div class="d-flex justify-content-center align-items-center">
+                    <i class="fas fa-2x fa-sync fa-spin"></i>
+                </div>
             </div>
         </div>
     </div>

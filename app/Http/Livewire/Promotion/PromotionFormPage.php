@@ -24,6 +24,20 @@ class PromotionFormPage extends Component
         'selectProduct' => 'selectProduct'
     ];
 
+    protected $rules = [
+        'prom_name' => 'required',
+        'prom_begin' => 'required',
+        'prom_end' => 'required',
+        'prom_status' => 'required',
+        'product_qty.*' => 'required|integer',
+        'product_discount.*' => 'required|numeric'
+    ];
+
+    public function savePromotion()
+    {
+        $this->validate();
+    }
+
     public function deleteConditionRow($index)
     {
         unset($this->conditions[$index]);
@@ -37,7 +51,7 @@ class PromotionFormPage extends Component
         ];
 
         $this->product_qty[] = 1;
-        $this->product_discount = 0;
+        $this->product_discount[] = 0;
     }
 
     public function deleteProductRow($index)
