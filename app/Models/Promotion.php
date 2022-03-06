@@ -16,4 +16,14 @@ class Promotion extends Model
         'prom_status',
         'prom_desc',
     ];
+
+    public function productItems()
+    {
+        return $this->hasMany(PromotionProduct::class,'promotion_id');
+    }
+
+    public function conditionItems()
+    {
+        return $this->hasMany(PromotionCondition::class,'promotion_id');
+    }
 }

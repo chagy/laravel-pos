@@ -4,6 +4,8 @@ namespace App\Http\Livewire\Promotion;
 
 use App\Models\Product;
 use Livewire\Component;
+use App\Models\Promotion;
+use Illuminate\Support\Facades\DB;
 
 class PromotionFormPage extends Component
 {
@@ -36,6 +38,48 @@ class PromotionFormPage extends Component
     public function savePromotion()
     {
         $this->validate();
+
+        DB::beginTransaction();
+        try {
+            $promotion = Promotion::updateOrCreate([
+                'id' => $this->idKey
+            ],[
+                'prom_name' => $this->prom_name,
+                'prom_begin' => $this->prom_begin,
+                'prom_end' => $this->prom_end,
+                'prom_status' => $this->prom_status,
+                'prom_desc' => $this->prom_desc,
+            ]);
+
+            foreach ($this->products as $key => $prod) {
+                $promotion->productItems()->create([
+                    'product_id' => $prod['product_id']
+                ]);
+            }
+
+            foreach($this->conditions as $key => $con){
+                $promotion->conditionItems()->create([
+                    'prom_con_qty' => $con['product_qty'],
+                    'prom_com_discount' => $con['product_discount'],
+                ]);
+            }
+
+            $this->dispatchBrowserEvent('swal',[
+                'title' => 'บันทึกข้อมูลสินค้าเรียบร้อย',
+                'timer' => 3000,
+                'icon' => 'success',
+                'url' => $this->idKey > 0 ? route('promotion.edit',$promotion->id)  : route('promotion.list')
+            ]);
+
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            dd($e);
+        }
+
+        
+
+        
     }
 
     public function deleteConditionRow($index)
