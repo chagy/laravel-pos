@@ -5,6 +5,8 @@ namespace App\Http\Livewire\Promotion;
 use App\Models\Product;
 use Livewire\Component;
 use App\Models\Promotion;
+use App\Models\PromotionProduct;
+use App\Models\PromotionCondition;
 use Illuminate\Support\Facades\DB;
 
 class PromotionFormPage extends Component
@@ -51,16 +53,19 @@ class PromotionFormPage extends Component
                 'prom_desc' => $this->prom_desc,
             ]);
 
+
+            PromotionProduct::where('promotion_id',$promotion->id)->delete();
             foreach ($this->products as $key => $prod) {
                 $promotion->productItems()->create([
                     'product_id' => $prod['product_id']
                 ]);
             }
 
+            PromotionCondition::where('promotion_id',$promotion->id)->delete();
             foreach($this->conditions as $key => $con){
                 $promotion->conditionItems()->create([
-                    'prom_con_qty' => $con['product_qty'],
-                    'prom_com_discount' => $con['product_discount'],
+                    'prom_con_qty' => $this->product_qty[$key],
+                    'prom_com_discount' => $this->product_discount[$key],
                 ]);
             }
 
@@ -115,7 +120,37 @@ class PromotionFormPage extends Component
 
     public function mount($id = 0)
     {
+        if($id > 0)
+        {
+            $promotion = Promotion::findOrFail($id);
+            $this->idKey = $promotion->id;
+            $this->prom_name = $promotion->prom_name;
+            $this->prom_begin = $promotion->prom_begin;
+            $this->prom_end = $promotion->prom_end;
+            $this->prom_status = $promotion->prom_status;
+            $this->prom_desc = $promotion->prom_desc;
 
+            foreach($promotion->productItems as $key => $product)
+            {
+                $this->products[] = [
+                    'product_id' => $product->product_id,
+                    'product_name' => $product->product->prod_name,
+                    'product_price' => $product->product->prod_price
+                ];
+            }
+
+            foreach ($promotion->conditionItems as $key => $prom) {
+                $this->conditions[] = [
+                    'product_qty' => $prom->prom_con_qty,
+                    'product_discount' => $prom->prom_com_discount
+                ];
+        
+                $this->product_qty[] = $prom->prom_con_qty;
+                $this->product_discount[] = $prom->prom_com_discount;
+            }
+        }
+        
+        
     }
 
     public function render()
