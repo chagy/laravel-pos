@@ -24,7 +24,6 @@ class Helper
             {
                 if($value->prom_con_qty < $qty){
                     $discount = $value->prom_com_discount;
-                    break;
                 }
             }
 
