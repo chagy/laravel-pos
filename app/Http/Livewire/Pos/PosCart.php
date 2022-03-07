@@ -55,11 +55,13 @@ class PosCart extends Component
         $this->items = $cart->values()->toArray();
 
         $this->discountItem = 0;
+        $promotion = 0;
         foreach ($cart as $key => $value) {
             $this->discountItem += $value->attributes->psod_item_discount_total;
+            $promotion += $value->attributes->psod_item_promotion;
         }
 
-        $this->total = Cart::getTotal() - $this->discount - $this->discountItem;
+        $this->total = Cart::getTotal() - $this->discount - $this->discountItem - $promotion;
 
         $customer_guest = User::where('type',2)->where('username','guest')->first();
         $this->customerId = $customer_guest->id;

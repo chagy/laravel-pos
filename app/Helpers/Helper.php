@@ -1,8 +1,48 @@
 <?php 
 namespace App\Helpers;
 
+use App\Models\Product;
+use App\Models\Promotion;
+use Cart;
+
 class Helper 
 {
+
+    public static function checkPromotion($productId,$dateC,$qty)
+    {
+        $product = Product::findOrFail($productId);
+        $promotion = Promotion::select('promotions.id')
+                            ->join("promotion_products",'promotion_products.promotion_id','=','promotions.id')
+                            ->whereRaw("'$dateC' BETWEEN prom_begin AND prom_end")
+                            ->where('promotion_products.product_id',$product->id)
+                            ->first();
+
+        if($promotion)
+        {
+            $discount = 0;
+            foreach($promotion->conditionItems as $value)
+            {
+                if($value->prom_con_qty < $qty){
+                    $discount = $value->prom_com_discount;
+                    break;
+                }
+            }
+
+            $cart = Cart::get($product->id);
+
+            Cart::update($productId,[
+                'attributes' => [
+                    'dateOrder' => date('YmdHis'),
+                    'psod_item_unit' => $product->prod_unit,
+                    'psod_item_price' => $product->prod_price,
+                    'psod_item_discount' => $product->prod_discount,
+                    'psod_item_promotion' => $discount,
+                    'psod_item_discount_total' => $product->prod_discount * $cart->quantity,
+                ]
+                ]);
+        }
+    }
+
     public static function mpdf($paperSize,$fontSize)
     {
         $defaultFontConfig = (new \Mpdf\Config\FontVariables())->getDefaults();

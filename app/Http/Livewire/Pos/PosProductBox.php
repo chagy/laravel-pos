@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Pos;
 use App\Models\Product;
 use Livewire\Component;
 use Cart;
+use Helper;
 
 class PosProductBox extends Component
 {
@@ -22,6 +23,7 @@ class PosProductBox extends Component
                 'psod_item_unit' => $this->product->prod_unit,
                 'psod_item_price' => $this->product->prod_price,
                 'psod_item_discount' => $this->product->prod_discount,
+                'psod_item_promotion' => 0,
                 'psod_item_discount_total' => $this->product->prod_discount,
             ]
         ]);
@@ -34,9 +36,12 @@ class PosProductBox extends Component
                 'psod_item_unit' => $this->product->prod_unit,
                 'psod_item_price' => $this->product->prod_price,
                 'psod_item_discount' => $this->product->prod_discount,
+                'psod_item_promotion' => $cart->attributes->psod_item_promotion,
                 'psod_item_discount_total' => $this->product->prod_discount * $cart->quantity,
             ]
         ]);
+
+        Helper::checkPromotion($this->product->id,date('Y-m-d'),$cart->quantity);
 
         // Cart::clear();
 
