@@ -21,8 +21,20 @@ class PosProductBox extends Component
                 'dateOrder' => date('YmdHis'),
                 'psod_item_unit' => $this->product->prod_unit,
                 'psod_item_price' => $this->product->prod_price,
-                'psod_item_discount' => 0,
-                'psod_item_discount_total' => 0,
+                'psod_item_discount' => $this->product->prod_discount,
+                'psod_item_discount_total' => $this->product->prod_discount,
+            ]
+        ]);
+
+        $cart = Cart::get($this->product->id);
+
+        Cart::update($this->product->id,[
+            'attributes' => [
+                'dateOrder' => date('YmdHis'),
+                'psod_item_unit' => $this->product->prod_unit,
+                'psod_item_price' => $this->product->prod_price,
+                'psod_item_discount' => $this->product->prod_discount,
+                'psod_item_discount_total' => $this->product->prod_discount * $cart->quantity,
             ]
         ]);
 
