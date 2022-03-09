@@ -10,6 +10,7 @@ class PosPage extends Component
 {
     public $searchTerm;
     public $category;
+    public $barQr = 1;
 
     public function render()
     {
