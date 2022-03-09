@@ -4,7 +4,7 @@
         <div class="col-8">
             <div class="card">
                 <div class="card-body">
-                    <form>
+                    <form onkeydown="return event.key != 'Enter';">
                         <div class="row">
                             <div class="col-4">
                                 <select class="form-control" wire:model="category">
@@ -20,7 +20,8 @@
                                         type="text" 
                                         placeholder="ค้นหา ชื่อ/บาร์โค้ด" 
                                         class="form-control" 
-                                        wire:model="searchTerm">
+                                        wire:model="searchTerm" 
+                                        wire:keydown.enter="addCart">
                                     <span class="input-group-append">
                                         <button class="btn btn-success">
                                             <i class="fas fa-search"></i>
