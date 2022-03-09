@@ -81,6 +81,13 @@
                     </div>
                 @endforeach
             </div>
+            <div class="row mt-2 overflow-auto" style="height: 40%; @if($barQr != 3) display: none; @endif">
+                @foreach ($products as $product)
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                        @livewire('pos.pos-product-qr-code', ['product' => $product], key($product->id."qr"))
+                    </div>
+                @endforeach
+            </div>
         </div>
         <div class="col-4">
             <div class="card">
