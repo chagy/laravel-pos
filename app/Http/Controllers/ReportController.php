@@ -6,6 +6,7 @@ use Excel;
 use App\Models\User;
 use App\Helpers\Helper;
 use App\Exports\ReportDay;
+use App\Exports\ReportMonth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -134,5 +135,12 @@ class ReportController extends Controller
         }
 
         return view('report.month',['year' => $year,'data' => $data,'months' => '','dataBar' => '']);
+    }
+
+    public function monthExcel(Request $request)
+    {
+        return Excel::download(new ReportMonth(
+            $request->year
+        ),'report_month.xlsx');
     }
 }
