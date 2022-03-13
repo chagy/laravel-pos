@@ -21,7 +21,7 @@
                                             name="billNo"
                                             id="billNo"
                                             class="form-control" 
-                                            value="" />
+                                            value="{{ $billNo }}" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -33,7 +33,7 @@
                                             class="form-control">
                                             <option value="">เลือกพนักงาน</option>
                                             @foreach ($employees as $emp)
-                                            <option value="{{ $emp->id }}">{{ $emp->name }}</option>  
+                                            <option value="{{ $emp->id }}" @if($emp->id == $employee) selected="selected" @endif>{{ $emp->name }}</option>  
                                             @endforeach
                                         </select>
                                     </div>
@@ -46,7 +46,7 @@
                                             name="dateStart"
                                             id="dateStart"
                                             class="form-control" 
-                                            value="" />
+                                            value="{{ $dateStart }}" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -57,7 +57,7 @@
                                             name="dateEnd"
                                             id="dateEnd"
                                             class="form-control" 
-                                            value="" />
+                                            value="{{ $dateEnd }}" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
