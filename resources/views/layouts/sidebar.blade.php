@@ -47,7 +47,7 @@
             </li>
             <li class="nav-header">รายงาน</li>
             <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{!! route('report.day.index') !!}" class="nav-link {{ \Request::routeIs('report.day.index') ? 'active' : '' }}">
                     <i class="nav-icon fas fa-chart-pie"></i>
                     <p>ประจำวัน</p>
                 </a>

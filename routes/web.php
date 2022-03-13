@@ -2,6 +2,7 @@
 
 use App\Http\Livewire\Pos\PosPage;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ReportController;
 use App\Http\Livewire\Setting\SettingPage;
 use App\Http\Controllers\PosPrintController;
 use App\Http\Livewire\Import\ImportFormPage;
@@ -154,4 +155,13 @@ Route::group([
     Route::get('/',PromotionListPage::class)->name('list');
     Route::get('/create',PromotionFormPage::class)->name('create');
     Route::get('/edit/{id}',PromotionFormPage::class)->name('edit');
+});
+
+Route::group([
+    'prefix' => 'report',
+    'as' => 'report.'
+],function(){
+    Route::get('/day',[ReportController::class,'day'])->name('day.index');
+    Route::get('/day/excel',[ReportController::class,'dayExcel'])->name('day.excel');
+    Route::get('/day/pdf',[ReportController::class,'dayPdf'])->name('day.pdf');
 });
