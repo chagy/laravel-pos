@@ -53,7 +53,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{!! route('report.month.index') !!}" class="nav-link {{ \Request::routeIs('report.month.index') ? 'active' : '' }}">
                     <i class="nav-icon fas fa-chart-line"></i>
                     <p>ประจำเดือน</p>
                 </a>

@@ -79,7 +79,12 @@
                                             Excel 
                                         </a>
                                         <a 
-                                            href="{!! route('report.day.pdf') !!}" 
+                                            href="{!! route('report.day.pdf',[
+                                                'billNo' => $billNo,
+                                                'employee' => $employee,
+                                                'dateEnd' => $dateEnd,
+                                                'dateStart' => $dateStart,
+                                            ]) !!}" 
                                             class="btn btn-info">
                                             PDF 
                                         </a>

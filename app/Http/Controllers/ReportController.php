@@ -113,4 +113,26 @@ class ReportController extends Controller
         $mpdf->WriteHTML(view('report.day-pdf',['data' => $data]));
         $mpdf->Output('day-report-'.date('d-m-Y').".pdf","I");
     }
+
+    public function month(Request $request)
+    {
+        $year = $request->year;
+        $data = [];
+
+        if($year){
+            $data = DB::table('pos_orders')
+                        ->select(
+                            DB::raw("MONTH(created_at) as m"),
+                            DB::raw("COUNT(id) as pos"),
+                            DB::raw("SUM(psod_qty) as qty"),
+                            DB::raw("SUM(psod_net_total) as total")
+                        )
+                        ->where('psod_status',1)
+                        ->whereYear('created_at',$year)
+                        ->groupBy(['m'])
+                        ->get();
+        }
+
+        return view('report.month',['year' => $year,'data' => $data,'months' => '','dataBar' => '']);
+    }
 }

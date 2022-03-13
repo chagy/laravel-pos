@@ -164,4 +164,8 @@ Route::group([
     Route::get('/day',[ReportController::class,'day'])->name('day.index');
     Route::get('/day/excel',[ReportController::class,'dayExcel'])->name('day.excel');
     Route::get('/day/pdf',[ReportController::class,'dayPdf'])->name('day.pdf');
+
+    Route::get('/month',[ReportController::class,'month'])->name('month.index');
+    Route::get('/month/excel',[ReportController::class,'monthExcel'])->name('month.excel');
+    Route::get('/month/pdf',[ReportController::class,'monthPdf'])->name('month.pdf');
 });
