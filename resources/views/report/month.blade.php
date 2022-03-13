@@ -76,7 +76,7 @@
                                     @endphp
                                     @foreach ($data as $item)
                                     <tr>
-                                        <td class="text-center">{{ $item->m }}</td>
+                                        <td class="text-center">{{ Helper::monthThaiLong($item->m) }}</td>
                                         <td class="text-right">{{ number_format($item->pos,2) }}</td>
                                         <td class="text-right">{{ number_format($item->qty,2) }}</td>
                                         <td class="text-right">{{ number_format($item->total,2) }}</td>
