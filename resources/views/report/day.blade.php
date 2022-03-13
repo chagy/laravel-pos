@@ -69,7 +69,12 @@
                                     </div>
                                     <div class="col-sm-6 text-right">
                                         <a 
-                                            href="{!! route('report.day.excel') !!}" 
+                                            href="{!! route('report.day.excel',[
+                                                'billNo' => $billNo,
+                                                'employee' => $employee,
+                                                'dateEnd' => $dateEnd,
+                                                'dateStart' => $dateStart,
+                                            ]) !!}" 
                                             class="btn btn-warning">
                                             Excel 
                                         </a>

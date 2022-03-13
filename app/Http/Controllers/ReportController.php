@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Excel;
 use App\Models\User;
+use App\Exports\ReportDay;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -55,5 +57,15 @@ class ReportController extends Controller
             'employees' => $employees,
             'data' => $data
         ]);
+    }
+
+    public function dayExcel(Request $request)
+    {
+        return Excel::download(new ReportDay(
+            $request->billNo,
+            $request->employee,
+            $request->dateStart,
+            $request->dateEnd
+        ),'report_day.xlsx');
     }
 }
