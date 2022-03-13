@@ -167,9 +167,8 @@ class Helper
 
     public static function monthThaiShort($strMonth)
     {
-        $month = date('n',strtotime($strMonth));
 
-        return self::$month_th_short[$month];
+        return self::$month_th_short[$strMonth];
     }
 
     public static function monthThaiLong($strMonth)

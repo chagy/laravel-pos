@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-<br/>
+    <br/>
     <div class="row">
         <div class="col-12">
             <div class="card card-danger">
@@ -85,7 +85,15 @@
                                         $pos += $item->pos;
                                         $qty += $item->qty;
                                         $total += $item->total;
+                                        $months .= "'".Helper::monthThaiShort($item->m)."'";
+                                        $dataBar .= $item->total;
                                     @endphp
+                                    @if (!$loop->last)
+                                        @php
+                                            $months .= ",";
+                                            $dataBar .= ",";
+                                        @endphp
+                                    @endif
                                     @endforeach
                                 </tbody>
                                 <tfoot>
@@ -104,4 +112,56 @@
             
         </div>
     </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card card-success">
+                <div class="card-header">
+                    <h3 class="card-title">Bar Chart</h3>
+                </div>
+                <div class="card-body">
+                    <div class="chart">
+                        <canvas id="barChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
+
+@push('scriptjs')
+<script src="{{ asset('assets/plugins/chart.js/Chart.min.js') }}"></script>
+<script>
+    var barChartData = {
+        labels : [{!! $months !!}],
+        datasets: [
+            {
+                label : 'ยอดซื้อสินค้า',
+                backgroundColor : 'rgba(60,141,188,0.9)',
+                borderColor : 'rgba(60,141,188,0.8)',
+                pointRadius : false,
+                pointColor : "#3b8bba",
+                pointStrokeColor : "rgba(60,141,188,1)",
+                pointHightlightFill : '#fff',
+                pointHightlightStroke : 'rgba(60,141,188,1)',
+                data : [{!! $dataBar !!}]
+            }
+        ]
+    }
+
+    var barChartCanvas = $("#barChart").get(0).getContext('2d');
+    var barChartData = $.extend(true,{},barChartData)
+    var temp0 = barChartData.datasets[0]
+
+    var barChartOptions = {
+        responsive : true,
+        maintainAspectRatio : false,
+        datasetFill : false
+    }
+
+    new Chart(barChartCanvas,{
+        type: 'bar',
+        data: barChartData,
+        options: barChartOptions
+    })
+</script>
+@endpush
