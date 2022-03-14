@@ -6,6 +6,7 @@ use Excel;
 use App\Models\User;
 use App\Helpers\Helper;
 use App\Exports\ReportDay;
+use App\Exports\ReportYear;
 use App\Exports\ReportMonth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -197,5 +198,13 @@ class ReportController extends Controller
             'years' => '',
             'dataBar' => ''
         ]);
+    }
+
+    public function yearExcel(Request $request)
+    {
+        return Excel::download(new ReportYear(
+            $request->yearStart,
+            $request->yearEnd
+        ),'report_year.xlsx');
     }
 }
