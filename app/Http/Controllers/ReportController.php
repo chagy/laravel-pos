@@ -207,4 +207,30 @@ class ReportController extends Controller
             $request->yearEnd
         ),'report_year.xlsx');
     }
+
+    public function yearPdf(Request $request)
+    {
+        $yearStart = $request->yearStart;
+        $yearEnd = $request->yearEnd;
+        $data = [];
+
+        if($yearStart && $yearEnd){
+            $data = DB::table('pos_orders')
+                        ->select(
+                            DB::raw("YEAR(created_at) as y"),
+                            DB::raw("COUNT(id) as pos"),
+                            DB::raw("SUM(psod_qty) as qty"),
+                            DB::raw("SUM(psod_net_total) as total")
+                        )
+                        ->where('psod_status',1)
+                        ->whereRaw('YEAR(created_at) BETWEEN ? AND ?',[$yearStart,$yearEnd])
+                        ->groupBy(['y'])
+                        ->get();
+        }
+
+        $mpdf = Helper::mpdf('A4','16');
+        $mpdf->WriteHTML(view('report.year-pdf',['data' => $data]));
+        $mpdf->Output('year-report-'.date('d-m-Y').".pdf","I");
+
+    }
 }
