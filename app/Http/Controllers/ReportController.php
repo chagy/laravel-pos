@@ -169,4 +169,33 @@ class ReportController extends Controller
         $mpdf->Output('month-report-'.date('d-m-Y').".pdf","I");
 
     }
+
+    public function year(Request $request)
+    {
+        $yearStart = $request->yearStart;
+        $yearEnd = $request->yearEnd;
+        $data = [];
+
+        if($yearStart && $yearEnd){
+            $data = DB::table('pos_orders')
+                        ->select(
+                            DB::raw("YEAR(created_at) as y"),
+                            DB::raw("COUNT(id) as pos"),
+                            DB::raw("SUM(psod_qty) as qty"),
+                            DB::raw("SUM(psod_net_total) as total")
+                        )
+                        ->where('psod_status',1)
+                        ->whereRaw('YEAR(created_at) BETWEEN ? AND ?',[$yearStart,$yearEnd])
+                        ->groupBy(['y'])
+                        ->get();
+        }
+
+        return view('report.year',[
+            'yearStart' => $yearStart,
+            'yearEnd' => $yearEnd,
+            'data' => $data,
+            'years' => '',
+            'dataBar' => ''
+        ]);
+    }
 }

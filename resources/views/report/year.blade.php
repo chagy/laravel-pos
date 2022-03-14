@@ -6,7 +6,7 @@
         <div class="col-12">
             <div class="card card-danger">
                 <div class="card-header">
-                    <h3 class="card-title">Month Report</h3>
+                    <h3 class="card-title">Year Report</h3>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -15,15 +15,31 @@
                                 @csrf
                                 
                                 <div class="form-group row">
-                                    <label for="year" class="col-sm-2 col-form-label">ปี</label>
+                                    <label for="yearStart" class="col-sm-2 col-form-label">ปี</label>
                                     <div class="col-sm-10">
                                         <select
-                                            name="year"
-                                            id="year"
+                                            name="yearStart"
+                                            id="yearStart"
                                             class="form-control">
                                             <option value="">เลือกปี</option>
                                             @for ($i = date('Y'); $i > date('Y') - 10; $i--)
-                                                <option value="{{ $i }}" @if($year == $i) selected="selected" @endif>
+                                                <option value="{{ $i }}" @if($yearStart == $i) selected="selected" @endif>
+                                                {{ $i }}
+                                                </option>
+                                            @endfor
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="yearEnd" class="col-sm-2 col-form-label">ปี</label>
+                                    <div class="col-sm-10">
+                                        <select
+                                            name="yearEnd"
+                                            id="yearEnd"
+                                            class="form-control">
+                                            <option value="">เลือกปี</option>
+                                            @for ($i = date('Y'); $i > date('Y') - 10; $i--)
+                                                <option value="{{ $i }}" @if($yearEnd == $i) selected="selected" @endif>
                                                 {{ $i }}
                                                 </option>
                                             @endfor
@@ -39,15 +55,17 @@
                                     </div>
                                     <div class="col-sm-6 text-right">
                                         <a 
-                                            href="{!! route('report.month.excel',[
-                                                'year' => $year,
+                                            href="{!! route('report.year.excel',[
+                                                'yearStart' => $yearStart,
+                                                'yearEnd' => $yearEnd
                                             ]) !!}" 
                                             class="btn btn-warning">
                                             Excel 
                                         </a>
                                         <a 
-                                            href="{!! route('report.month.pdf',[
-                                                'year' => $year,
+                                            href="{!! route('report.year.pdf',[
+                                                'yearStart' => $yearStart,
+                                                'yearEnd' => $yearEnd
                                             ]) !!}" 
                                             class="btn btn-info">
                                             PDF 
@@ -62,7 +80,7 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>เดือน</th>
+                                        <th>ปี</th>
                                         <th>จำนวนการซื้อ</th>
                                         <th>จำนวนสินค้า</th>
                                         <th>จำนวนเงิน</th>
@@ -76,7 +94,7 @@
                                     @endphp
                                     @foreach ($data as $item)
                                     <tr>
-                                        <td class="text-center">{{ Helper::monthThaiLong($item->m) }}</td>
+                                        <td class="text-center">{{ $item->y }}</td>
                                         <td class="text-right">{{ number_format($item->pos,2) }}</td>
                                         <td class="text-right">{{ number_format($item->qty,2) }}</td>
                                         <td class="text-right">{{ number_format($item->total,2) }}</td>
@@ -85,12 +103,12 @@
                                         $pos += $item->pos;
                                         $qty += $item->qty;
                                         $total += $item->total;
-                                        $months .= "'".Helper::monthThaiShort($item->m)."'";
+                                        $years .= "'". $item->y."'";
                                         $dataBar .= $item->total;
                                     @endphp
                                     @if (!$loop->last)
                                         @php
-                                            $months .= ",";
+                                            $years .= ",";
                                             $dataBar .= ",";
                                         @endphp
                                     @endif
@@ -132,7 +150,7 @@
 <script src="{{ asset('assets/plugins/chart.js/Chart.min.js') }}"></script>
 <script>
     var barChartData = {
-        labels : [{!! $months !!}],
+        labels : [{!! $years !!}],
         datasets: [
             {
                 label : 'ยอดซื้อสินค้า',

@@ -59,7 +59,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{!! route('report.year.index') !!}" class="nav-link {{ \Request::routeIs('report.year.index') ? 'active' : '' }}">
                     <i class="nav-icon fas fa-chart-bar"></i>
                     <p>ประจำปี</p>
                 </a>
