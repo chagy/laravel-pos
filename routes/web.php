@@ -47,28 +47,32 @@ require __DIR__.'/auth.php';
 
 Route::group([
     'prefix' => 'provinces',
-    'as' => 'province.'
+    'as' => 'province.',
+    'middleware' => ['auth','role:admin']
 ],function(){
     Route::get('/',ProvinceListPage::class)->name('list');
 });
 
 Route::group([
     'prefix' => 'districts',
-    'as' => 'district.'
+    'as' => 'district.',
+    'middleware' => ['auth','role:admin']
 ],function(){
     Route::get('/',DistrictListPage::class)->name('list');
 });
 
 Route::group([
     'prefix' => 'sub-districts',
-    'as' => 'sub.district.'
+    'as' => 'sub.district.',
+    'middleware' => ['auth','role:admin']
 ],function(){
     Route::get('/',SubDistrictListPage::class)->name('list');
 });
 
 Route::group([
     'prefix' => 'supplier',
-    'as' => 'supplier.'
+    'as' => 'supplier.',
+    'middleware' => ['auth','role:admin']
 ],function(){
     Route::get('/',SupplierListPage::class)->name('list');
     Route::get('/create',SupplierFormPage::class)->name('create');
@@ -77,7 +81,8 @@ Route::group([
 
 Route::group([
     'prefix' => 'employees',
-    'as' => 'employee.'
+    'as' => 'employee.',
+    'middleware' => ['auth','role:admin']
 ],function(){
     Route::get('/',EmployeeListPage::class)->name('list');
     Route::get('/create',EmployeeFormPage::class)->name('create');
@@ -86,7 +91,8 @@ Route::group([
 
 Route::group([
     'prefix' => 'customers',
-    'as' => 'customer.'
+    'as' => 'customer.',
+    'middleware' => ['auth','role:admin']
 ],function(){
     Route::get('/',CustomerListPage::class)->name('list');
     Route::get('/create',CustomerFormPage::class)->name('create');
@@ -121,14 +127,16 @@ Route::group([
 
 Route::group([
     'prefix' => 'pos',
-    'as' => 'pos.'
+    'as' => 'pos.',
+    'middleware' => ['auth','role:admin|employee']
 ],function(){
     Route::get('/',PosPage::class)->name('index');
 });
 
 Route::group([
     'prefix' => 'setting',
-    'as' => 'setting.'
+    'as' => 'setting.',
+    'middleware' => ['auth','role:admin']
 ],function(){
     Route::get('/',SettingPage::class)->name('index');
 });
