@@ -55,6 +55,11 @@
                                     class="btn btn-sm btn-warning" >
                                     <i class="fas fa-edit"></i>
                                 </a>
+                                <a
+                                  href="{!! route('employee.role.permission',$item->id) !!}"
+                                    class="btn btn-sm btn-info" >
+                                    <i class="fas fa-user"></i>
+                                </a>
                             </td>
                         </tr> 
                         @endforeach

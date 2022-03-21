@@ -19,6 +19,7 @@ use App\Http\Livewire\Employee\EmployeeListPage;
 use App\Http\Livewire\Province\ProvinceListPage;
 use App\Http\Livewire\Supplier\SupplierFormPage;
 use App\Http\Livewire\Supplier\SupplierListPage;
+use App\Http\Livewire\Employee\RolePermissionPage;
 use App\Http\Livewire\Product\ProductDiscountPage;
 use App\Http\Livewire\Promotion\PromotionFormPage;
 use App\Http\Livewire\Promotion\PromotionListPage;
@@ -82,11 +83,12 @@ Route::group([
 Route::group([
     'prefix' => 'employees',
     'as' => 'employee.',
-    'middleware' => ['auth','role:admin']
+    // 'middleware' => ['auth','role:admin']
 ],function(){
     Route::get('/',EmployeeListPage::class)->name('list');
     Route::get('/create',EmployeeFormPage::class)->name('create');
     Route::get('/update/{id}',EmployeeFormPage::class)->name('update');
+    Route::get('/role-permission/{id}',RolePermissionPage::class)->name('role.permission');
 });
 
 Route::group([
@@ -145,7 +147,8 @@ Route::group([
 
 Route::group([
     'prefix' => 'pos/print',
-    'as' => 'pos.print.'
+    'as' => 'pos.print.',
+    'middleware' => ['auth','role:employee|admin']
 ],function() {
     Route::get('/slip/{id}',[PosPrintController::class,'printSlip'])->name('slip');
     Route::get('/a4/{id}',[PosPrintController::class,'printa'])->name('a');
@@ -153,14 +156,16 @@ Route::group([
 
 Route::group([
     'prefix' => 'discount',
-    'as' => 'discount.'
+    'as' => 'discount.',
+    'middleware' => ['auth','role:employee|admin']
 ],function(){
     Route::get('/',ProductDiscountPage::class)->name('list');
 });
 
 Route::group([
     'prefix' => 'promotion',
-    'as' => 'promotion.'
+    'as' => 'promotion.',
+    'middleware' => ['auth','role:employee|admin']
 ],function(){
     Route::get('/',PromotionListPage::class)->name('list');
     Route::get('/create',PromotionFormPage::class)->name('create');
@@ -169,7 +174,8 @@ Route::group([
 
 Route::group([
     'prefix' => 'report',
-    'as' => 'report.'
+    'as' => 'report.',
+    'middleware' => ['auth','role:employee|admin']
 ],function(){
     Route::get('/day',[ReportController::class,'day'])->name('day.index');
     Route::get('/day/excel',[ReportController::class,'dayExcel'])->name('day.excel');
