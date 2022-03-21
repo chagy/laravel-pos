@@ -108,7 +108,8 @@ Route::group([
 
 Route::group([
     'prefix' => 'products',
-    'as' => 'product.'
+    'as' => 'product.',
+    'middleware' => ['auth','permission:import']
 ],function(){
     Route::get('/',ProductListPage::class)->name('list');
     Route::get('/create',ProductFormPage::class)->name('create');
@@ -117,7 +118,8 @@ Route::group([
 
 Route::group([
     'prefix' => 'imports',
-    'as' => 'import.'
+    'as' => 'import.',
+    'middleware' => ['auth','role:admin','permission:import']
 ],function(){
     Route::get('/',ImportListPage::class)->name('list');
     Route::get('/create',ImportFormPage::class)->name('create');
@@ -128,7 +130,7 @@ Route::group([
 Route::group([
     'prefix' => 'pos',
     'as' => 'pos.',
-    'middleware' => ['auth','role:admin|employee']
+    'middleware' => ['auth','permission:pos']
 ],function(){
     Route::get('/',PosPage::class)->name('index');
 });
