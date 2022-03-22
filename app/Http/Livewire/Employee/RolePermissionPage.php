@@ -10,6 +10,7 @@ use Spatie\Permission\Models\Permission;
 class RolePermissionPage extends Component
 {
     public $role;
+    public $permission = [];
     public $employee;
 
     public function mount($id)
@@ -18,6 +19,7 @@ class RolePermissionPage extends Component
         if($employee){
             $this->role = !empty($employee->getRoleNames()[0]) ? $employee->getRoleNames()[0] : '';
             $this->employee = $employee;
+            $this->permission =  !empty($employee->getPermissionNames()) ? $employee->getPermissionNames() : [];
         }
     }
 
@@ -27,6 +29,8 @@ class RolePermissionPage extends Component
         $role = Role::where('name',$this->role)->first();
         
         $this->employee->syncRoles($role->name);
+
+        $this->employee->syncPermissions($this->permission);
 
         $this->dispatchBrowserEvent('swal',[
             'title' => 'บันทึกข้อมูลระดับและสิทธิ์เรียบร้อย',

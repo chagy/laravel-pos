@@ -12,15 +12,14 @@
                         <div class="row">
                             <div class="col-12 col-md-12">
                                 <div class="form-group">
-                                    <label for="role">สิทธิ์</label>
+                                    <label for="role">ระดับ</label>
                                     <select 
                                         
                                         class="form-control @error('role') is-invalid @enderror" 
                                         name="role"
                                         id="role" 
-                                        placeholder="สิทธิ์" 
                                         wire:model="role">
-                                        <option value="">กรุณาเลือกสิทธิ์</option>
+                                        <option value="">กรุณาเลือกระดับ</option>
                                         @foreach ($roles as $item)
                                         <option value="{{ $item->name }}">{{ $item->name }}</option>
                                         @endforeach
@@ -30,6 +29,27 @@
                                         {{ $message }}
                                     </div>
                                     @enderror
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-12">
+                                <div class="form-group">
+                                    <label for="permission">สิทธิ์</label>
+                                    @foreach ($permissions as $key => $item)
+                                        <div class="custom-control custom-checkbox">
+                                            <input 
+                                                class="custom-control-input" 
+                                                type="checkbox" 
+                                                wire:model="permission.{{ $key }}"
+                                                id="customCheckbox{{ $item->id }}" 
+                                                value="{{ $item->name }}">
+                                            <label 
+                                                for="customCheckbox{{ $item->id }}" 
+                                                class="custom-control-label">
+                                                {{ $item->name }}
+                                            </label>
+                                        </div>
+                                    @endforeach
+                                    
                                 </div>
                             </div>
                         </div>
