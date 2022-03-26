@@ -4,7 +4,7 @@
 
 ## ระบบ POS
 
-เป็นระบบซื้อ-ขาย ของร้านชำทั่วไป สร้างเพื่อเป็นคอร์สเรียนสอนการเขียนระบบด้วย Laravel Frame:
+เป็นระบบซื้อ-ขาย ของร้านชำทั่วไป สร้างเพื่อเป็นคอร์สเรียนสอนการเขียนระบบด้วย Laravel Framework:
 
 ## ขั้นตอนการติดตั้งระบบ
 สร้างโปรเจ็คด้วยคำสั่ง git clone:
@@ -53,51 +53,23 @@ Run server:
 php artisan serve
 ```
 
-You're ready to go! Visit the url in your browser, and login with:
+Username & Password สำหรับล็อกอินเข้าระบบ:
 
--   **Username:** admin@filamentphp.com
+-   **Username:** admin
+-   **Password:** password
+-   **Username:** employee
+-   **Password:** password
+-   **Username:** customer
 -   **Password:** password
 
-## Learning Laravel
+## บทเรียน
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Section 0 : เตรียมเครื่องมือ
 
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[CMS Max](https://www.cmsmax.com/)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-- **[Romega Software](https://romegasoftware.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+1. **ติดตั้งเครื่องมือที่จำเป็น**
+2. **ติดตั้ง Laravel**
+3. **[ติดตั้ง plugin](https://github.com/chagy/laravel-pos/commit/27eb267a15d714338e671ca1fdd3cfa5f40fb486)**
+4. **[ติดตั้ง Package Login](https://github.com/chagy/laravel-pos/commit/e32840009f4fc2d0290d1ca42d8397da45de269c)**
+5. **[ติดตั้ง Pakage Permission](https://github.com/chagy/laravel-pos/commit/ad1b7ba45891c71926f80e2453d472ed8813ee5a)**
+6. **ติดตั้ง Extension VS code**
