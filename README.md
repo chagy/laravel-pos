@@ -1,25 +1,62 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## ระบบ POS
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+เป็นระบบซื้อ-ขาย ของร้านชำทั่วไป สร้างเพื่อเป็นคอร์สเรียนสอนการเขียนระบบด้วย Laravel Frame:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## ขั้นตอนการติดตั้งระบบ
+สร้างโปรเจ็คด้วยคำสั่ง git clone:
+```sh
+git clone https://github.com/chagy/laravel-pos.git <ชื่อโพลเดอร์โปรเจ็ค>
+cd <ชื่อโพลเดอร์โปรเจ็ค>
+```
+ติดตั้ง PHP dependencies:
+```sh
+composer install
+```
+ตั้งค่า configuration:
+
+```sh
+cp .env.example .env
+```
+
+สร้าง application key:
+
+```sh
+php artisan key:generate
+```
+
+สร้างฐานข้อมูล เป็น MySQL แล้วกำหนดค่าฐานข้อมูลในไฟล์ .env
+```sh
+DB_DATABASE=ชื่อ ฐานข้อมูล
+DB_USERNAME=username ฐานข้อมูล
+DB_PASSWORD=password ฐานข้อมูล
+```
+
+Run คำสั่ง database migrations:
+
+```sh
+php artisan migrate
+```
+
+Run คำสั่ง database seeder:
+
+```sh
+php artisan db:seed
+```
+
+Run server:
+
+```sh
+php artisan serve
+```
+
+You're ready to go! Visit the url in your browser, and login with:
+
+-   **Username:** admin@filamentphp.com
+-   **Password:** password
 
 ## Learning Laravel
 

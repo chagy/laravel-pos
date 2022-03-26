@@ -37,9 +37,9 @@ class AddUsernameColumnToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('email')->unique()->change();
-            $table->dropForeing('users_province_id_foreign');
-            $table->dropForeing('users_district_id_foreign');
-            $table->dropForeing('users_sub_district_id_foreign');
+            $table->dropForeign('users_province_id_foreign');
+            $table->dropForeign('users_district_id_foreign');
+            $table->dropForeign('users_sub_district_id_foreign');
 
             $table->dropColumn('username');
             $table->dropColumn('phone');

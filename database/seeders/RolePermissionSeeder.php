@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -15,11 +16,24 @@ class RolePermissionSeeder extends Seeder
      */
     public function run()
     {
-        Role::create(['name' => 'admin']);
-        Role::create(['name' => 'employee']);
-        Role::create(['name' => 'customer']);
+        $adminRole = Role::create(['name' => 'admin']);
+        $admin = User::where(['username' => 'admin'])->first();
+        $admin->assignRole($adminRole->name);
 
-        Permission::create(['name' => 'pos']);
-        Permission::create(['name' => 'import']);
+        $employeeRole = Role::create(['name' => 'employee']);
+        $employee = User::where(['username' => 'employee'])->first();
+        $employee->assignRole($employeeRole->name);
+        
+        $customerRole = Role::create(['name' => 'customer']);
+        $customer = User::where(['username' => 'customer'])->first();
+        $customer->assignRole($customerRole->name);
+
+        $posPermission = Permission::create(['name' => 'pos']);
+        $importPermission = Permission::create(['name' => 'import']);
+
+        $adminRole->givePermissionTo($posPermission->name);
+        $adminRole->givePermissionTo($importPermission->name);
+
+        $this->command->info('Role & Permission table seeded!');
     }
 }
