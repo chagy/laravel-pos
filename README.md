@@ -226,10 +226,10 @@ Username & Password สำหรับล็อกอินเข้าระบ
 11. **[พิมพ์ใบเสร็จแบบ A4 5](https://github.com/chagy/laravel-pos/commit/cf149cca0a85519277e065dc0325abe4bfe44b69)**
 
 
-### Section 15 : Discount (จัดการส่วนสด)
+### Section 15 : Discount (จัดการส่วนลด)
 
-1. **[สร้างรายการส่วนสด](https://github.com/chagy/laravel-pos/commit/f44e0e88d4e9c3c6ed5b3ef7656e676689ce6af2)**
-2. **[แก้ไขส่วนสด](https://github.com/chagy/laravel-pos/commit/f4e5b48270a9f05fb017008a5fd165ab9fdbb453)**
+1. **[สร้างรายการส่วนลด](https://github.com/chagy/laravel-pos/commit/f44e0e88d4e9c3c6ed5b3ef7656e676689ce6af2)**
+2. **[แก้ไขส่วนลด](https://github.com/chagy/laravel-pos/commit/f4e5b48270a9f05fb017008a5fd165ab9fdbb453)**
 
 
 ### Section 16 : Promotion (จัดการโปรโมชั่น)
@@ -242,3 +242,46 @@ Username & Password สำหรับล็อกอินเข้าระบ
 6. **[Validation ข้อมูลโปรโมชั่น](https://github.com/chagy/laravel-pos/commit/95c762d3858654ec1aac46f61d1ecf4d27e97000)**
 7. **[บันทึก ข้อมูลโปรโมชั่น](https://github.com/chagy/laravel-pos/commit/0687b93253a41d09def2a46c6c1452f4be45b8b4)**
 8. **[แก้ไข ข้อมูลโปรโมชั่น](https://github.com/chagy/laravel-pos/commit/19057129314d87ea328b2e39a8bf47c32068a412)**
+
+### Section 17 : Pos 3 (จัดการขายสินค้า)
+
+1. **[ส่วนลดของสินค้า](https://github.com/chagy/laravel-pos/commit/38b3cefc6c3d663d5e218f3e7abc79e9586caaea)**
+2. **[โปรโมชั่นของสินค้า](https://github.com/chagy/laravel-pos/commit/15f0e8758302b6ff53edc0fedfe080075d412330)**
+3. **[โปรโมชั่นของสินค้า แก้ไข Bug](https://github.com/chagy/laravel-pos/commit/ba809b21f4f2c5fa0dfaef8452c27afdfa4a16e1)**
+4. **[ติดตั้ง plugin barcode](https://github.com/chagy/laravel-pos/commit/8619fe95bf30911756eb1f02b61f92a78f48e71d)**
+5. **[สร้างบาร์โค้ดให้สินค้า](https://github.com/chagy/laravel-pos/commit/41b57c16be32da83e0b97b2f52fac5eb019a7360)**
+6. **[สร้าง Qr code ให้สินค้า](https://github.com/chagy/laravel-pos/commit/59416f9b899f8e94c81b1593f948afe33ac1ed7e)**
+7. **[Scan Qr code & Bar code ของสินค้า](https://github.com/chagy/laravel-pos/commit/17fccb00d525fd9bc6feb3f316e5f78099ce456c)**
+
+### Section 18 : Report (รายงาน)
+
+1. **[สร้างหน้ารายงานรายวัน](https://github.com/chagy/laravel-pos/commit/fd32e7fdb5269ae4b6ecea132d17991e20a510e6)**
+2. **[คิวรีรายงานรายวัน](https://github.com/chagy/laravel-pos/commit/21007276f7ba27ba088a7621097c4e6a2e303819)**
+3. **[คิวรีข้อมูลเงื่อนไขลง Input](https://github.com/chagy/laravel-pos/commit/824a734a675e7fad9a4a9393fd3f312b0843557e)**
+4. **[รายงานรายวัน Export to Excel](https://github.com/chagy/laravel-pos/commit/1dad4dab159aed08c3bf35f19ef76985141e73cf)**
+5. **[รายงานรายวัน Export to PDF](https://github.com/chagy/laravel-pos/commit/a51774dfa2223c5dc427d5b510b893caa8762e92)**
+6. **[สร้างหน้ารายงานรายเดือนและคิวรีข้อมูล](https://github.com/chagy/laravel-pos/commit/cf4ec7a09cf027dee41bd6eaa07894ed54e63164)**
+7. **[เปลี่ยนเดือนเป็นภาษาไทย](https://github.com/chagy/laravel-pos/commit/62150fd47762797ec7b1aad84a71e832c8162c2d)**
+8. **[รายงานรายเดือน Export to Excel](https://github.com/chagy/laravel-pos/commit/71c8266a8cc3b9cd460ed9cf76ad4d981339da1b)**
+9. **[รายงานรายเดือน Export to PDF](https://github.com/chagy/laravel-pos/commit/94761f4f7abe7e7912809b091691e1fa6530efc5)**
+10. **[สร้างกราฟแท่งให้รายงานรายเดือน](https://github.com/chagy/laravel-pos/commit/949a73dbb103eb9cc5da2c2d995a2e1fcafea863)**
+11. **[สร้างหน้ารายงานรายปี](https://github.com/chagy/laravel-pos/commit/a50c4830828e3e574dc2097ab47788e8b84e198e)**
+12. **[รายงานรายปี Export to Excel](https://github.com/chagy/laravel-pos/commit/8870fa53bd90fcfbc42d056da840b0a5c3f85b2f)**
+13. **[รายงานรายปี Export to PDF](https://github.com/chagy/laravel-pos/commit/61a765af2df3bf4ab58cbc8eb1308b54bd2971af)**
+
+### Section 19 : Role & Permission (ระดับและสิทธิ์)
+
+1. **[สร้างระดับและสิทธิ์](https://github.com/chagy/laravel-pos/commit/221972d1ec4410354a662e77a4feeb37a8271c06)**
+2. **[เมนูระดับ](https://github.com/chagy/laravel-pos/commit/fa69604ddea0dcaac23a84dc068b9b278b5af11e)**
+3. **[เมนูสิทธิ์](https://github.com/chagy/laravel-pos/commit/9ad7938e4fd16d184e52bbc59544c692eeee97a1)**
+4. **[จัดการระดับให้พนักงาน](https://github.com/chagy/laravel-pos/commit/4058d784d9cd21ec7dece65354b1daa4a5000778)**
+5. **[บันทึกระดับให้พนักงาน](https://github.com/chagy/laravel-pos/commit/4058d784d9cd21ec7dece65354b1daa4a5000778)**
+6. **[บันทึกสิทธิ์ให้พนักงาน](https://github.com/chagy/laravel-pos/commit/fadfebd697d56c9a18a81a9f62a4ea1d1842ccaa)**
+
+### Section 20 : Login (จัดการเข้าสู่ระบบ)
+
+1. **[เปลี่ยนจาก Email เป็น Username](https://github.com/chagy/laravel-pos/commit/944e099f36e91378e8df62df47300be173d2f30e)**
+
+### Section 21 : Deploy (อัพโปรเจ็คขึ้น Share Hosting)
+
+1. **อัพโปรเจ็ค**
