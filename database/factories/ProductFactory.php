@@ -21,7 +21,7 @@ class ProductFactory extends Factory
             'prod_price' => rand(100,10000),
             'prod_qty' => rand(100,10000),
             'prod_discount' => 0,
-            'prod_bar_code' => null,
+            'prod_bar_code' => rand(1,10000),
             'prod_picture' => null,
             'prod_status' => true
         ];
