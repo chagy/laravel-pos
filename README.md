@@ -281,6 +281,8 @@ Username & Password สำหรับล็อกอินเข้าระบ
 ### Section 20 : Login (จัดการเข้าสู่ระบบ)
 
 1. **[เปลี่ยนจาก Email เป็น Username](https://github.com/chagy/laravel-pos/commit/944e099f36e91378e8df62df47300be173d2f30e)**
+2. **[แสดงชื่อบน Sidebar](https://github.com/chagy/laravel-pos/commit/b8a0034a874a9f4647e10bf6090c11b0c217caad)**
+3. **[สร้างหน้าแดชบอร์ด](https://github.com/chagy/laravel-pos/commit/89586f2d91727e43dc773f994761a85d288e4c35)**
 
 ### Section 21 : Deploy (อัพโปรเจ็คขึ้น Share Hosting)
 
