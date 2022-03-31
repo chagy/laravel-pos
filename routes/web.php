@@ -39,9 +39,7 @@ use App\Http\Livewire\SubDistrict\SubDistrictListPage;
 
 Route::get('/', [DashboardController::class,'index']);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth',"role:admin"])->name('dashboard');
+Route::get('/dashboard',[DashboardController::class,'index'])->middleware(['auth',"role:admin"])->name('dashboard');
 
 require __DIR__.'/auth.php';
 
