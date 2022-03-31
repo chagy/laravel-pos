@@ -13,7 +13,21 @@
           <img src="{{ asset('assets/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+            @auth
+                <a 
+                    href="#" 
+                    class="d-block" 
+                    onclick="event.preventDefault(); document.getElementById('form-logout').submit();">
+                    {{ auth()->user()->name }}
+                </a>
+
+                <form action="{!! route('logout') !!}" method="post" style="display: none;" id="form-logout">
+                    @csrf
+                </form>
+            @else
+                <a href="{!! route('login') !!}" class="d-block">Login</a>
+            @endauth
+          
         </div>
       </div>
       <!-- Sidebar Menu -->
