@@ -7,6 +7,7 @@ use App\Http\Livewire\Setting\SettingPage;
 use App\Http\Controllers\PosPrintController;
 use App\Http\Livewire\Import\ImportFormPage;
 use App\Http\Livewire\Import\ImportListPage;
+use App\Http\Controllers\DashboardController;
 use App\Http\Livewire\Import\ImportExcelPage;
 use App\Http\Livewire\Product\ProductFormPage;
 use App\Http\Livewire\Product\ProductListPage;
@@ -36,9 +37,7 @@ use App\Http\Livewire\SubDistrict\SubDistrictListPage;
 |
 */
 
-Route::get('/', function () {
-    return view('layouts.main');
-});
+Route::get('/', [DashboardController::class,'index']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
